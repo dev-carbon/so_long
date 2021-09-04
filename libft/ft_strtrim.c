@@ -6,7 +6,7 @@
 /*   By: humanfou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/07 15:34:01 by humanfou          #+#    #+#             */
-/*   Updated: 2020/01/11 17:14:27 by humanfou         ###   ########.fr       */
+/*   Updated: 2021/03/09 14:38:37 by humanfou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	check_set(char c, char const *set)
 {
-	unsigned int i;
+	unsigned int	i;
 
 	if (!set)
 		return (0);

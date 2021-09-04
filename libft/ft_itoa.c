@@ -5,46 +5,33 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: humanfou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/11 14:20:06 by humanfou          #+#    #+#             */
-/*   Updated: 2020/01/11 17:17:09 by humanfou         ###   ########.fr       */
+/*   Created: 2020/09/23 18:03:19 by humanfou          #+#    #+#             */
+/*   Updated: 2020/09/23 19:57:06 by humanfou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-unsigned int		ft_get_size(unsigned int n)
+char	*ft_itoa(intmax_t nbr)
 {
-	unsigned int	size;
+	uintmax_t	unbr;
+	int			number_length;
+	int			i;
+	char		*res;
 
-	size = 0;
-	while (n >= 10)
+	unbr = (nbr < 0) ? -nbr : nbr;
+	number_length = (nbr < 0) ? ft_nbrlen(unbr) + 1 : ft_nbrlen(unbr);
+	if (!(res = (char *)malloc(sizeof(char) * (number_length + 1))))
+		return (NULL);
+	i = -1;
+	while (unbr > 0)
 	{
-		n /= 10;
-		size++;
+		res[++i] = (int)unbr % 10 + '0';
+		unbr /= 10;
 	}
-	return (size + 1);
-}
-
-char				*ft_itoa(int n)
-{
-	unsigned int	nb;
-	unsigned int	size;
-	int				i;
-	char			*str;
-
-	nb = (n < 0) ? (unsigned int)(n * -1) : (unsigned int)n;
-	size = (n < 0) ? ft_get_size(nb) + 1 : ft_get_size(nb);
-	if (!(str = (char *)malloc(sizeof(char) * (size + 1))))
-		return (0);
-	if (n < 0)
-		str[0] = '-';
-	i = size - 1;
-	str[size] = '\0';
-	while (nb >= 10)
-	{
-		str[i--] = (nb % 10) + '0';
-		nb /= 10;
-	}
-	str[i] = (nb % 10) + '0';
-	return (str);
+	if (nbr < 0)
+		res[++i] = '-';
+	res[++i] = '\0';
+	ft_strrev(res);
+	return (res);
 }

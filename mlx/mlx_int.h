@@ -33,7 +33,7 @@
 /* #include	<X11/xpm.h> */
 
 
-# define MLX_TYPE_SHM_PIXMAP 3
+# define MLX_TYPE_SHPIXMAP 3
 # define MLX_TYPE_SHM 2
 # define MLX_TYPE_XIMAGE 1
 
@@ -114,7 +114,6 @@ typedef struct	s_xvar
 	int			do_flush;
 	int			decrgb[6];
 	Atom		wm_delete_window;
-	Atom		wm_protocols;
 	int 		end_loop;
 }				t_xvar;
 

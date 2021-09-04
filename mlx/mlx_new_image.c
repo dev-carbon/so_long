@@ -89,7 +89,7 @@ void	*mlx_int_new_xshm_image(t_xvar *xvar,int width,int height,int format)
     {
       img->pix = XShmCreatePixmap(xvar->display,xvar->root,img->shm.shmaddr,
 				  &(img->shm),width,height,xvar->depth);
-      img->type = MLX_TYPE_SHM_PIXMAP;
+      img->type = MLX_TYPE_SHPIXMAP;
     }
   else
     {
@@ -108,13 +108,9 @@ void	*mlx_int_new_image(t_xvar *xvar,int width, int height,int format)
 {
   t_img	*img;
 
-  if (!(img = malloc(sizeof(*img))))
+  if (!(img = malloc(sizeof(*img))) ||
+      !(img->data = malloc((width+32)*height*4)))
     return ((void *)0);
-  if (!(img->data = malloc((width+32)*height*4)))
-  {
-    free(img);
-    return ((void *)0);
-  }
   bzero(img->data,(width+32)*height*4);
   img->image = XCreateImage(xvar->display,xvar->visual,xvar->depth,format,0,
 			    img->data,width,height,32,0);
