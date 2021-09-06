@@ -13,6 +13,11 @@
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
+# define MAP_SPACE 0
+# define MAP_WALL 1
+# define MAP_COLLECTIBLE 2
+# define MAP_UNKNOW 3
+
 typedef struct s_coor
 {
 	double  x;
@@ -59,7 +64,8 @@ typedef struct s_player
 	t_coor  pos;
 }   t_player;
 
-typedef struct s_data {
+typedef struct s_data 
+{
 	int			fd;
 	int			ret;
 	char		*line;
@@ -68,6 +74,7 @@ typedef struct s_data {
 	t_coor		start_pos;
 	t_coor		exit_pos;
 	t_rows		*rows;
+	t_map		*map;
 	t_player    *player;
 	t_window    *window;
 }	t_data;

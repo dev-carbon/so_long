@@ -13,7 +13,10 @@
 #ifndef VALIDATE_H
 # define VALIDATE_H
 
+# include "so_long.h"
+
 int is_valid_args(const int ac, const char **av);
 int is_valid_file_extension(const char *filename, const char *ext);
+int	is_valid_map(int x, int y, int **grid, t_map map);
 
 #endif

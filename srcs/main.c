@@ -21,6 +21,9 @@
 static t_data	*init(t_data *data)
 {
 	data = (t_data *)malloc(sizeof(t_data));
+	data->map = (t_map *)malloc(sizeof(t_map));
+	data->map->size.width = 0;
+	data->map->size.height = 0;
 	data->num_collectibles = 0;
 	data->exit_pos.x = -1;
 	data->exit_pos.y = -1;
@@ -75,39 +78,114 @@ static t_data	*parse(const char *filename, t_data *data)
 	}
 	// validating rows
 	t_coor	pos;
+	t_rows	*buff;
 
-	pos.y = -1; 
-	while (data->rows != NULL)
+	buff = data->rows;
+	pos.y = -1;
+	while (buff != NULL)
 	{
-		printf("-> %s\n", data->rows->line);
+		printf("-> %s\n", buff->line);
 		// check bad character
 		pos.x = -1;
 		pos.y++;
-		while (data->rows->line[(int)++pos.x])
+		while (buff->line[(int)++pos.x])
 		{
-			if (data->rows->line[(int)pos.x] != '0' &&
-				data->rows->line[(int)pos.x] != '1' &&
-				data->rows->line[(int)pos.x] != 'P' &&
-				data->rows->line[(int)pos.x] != 'C' &&
-				data->rows->line[(int)pos.x] != 'E')
+			if (buff->line[(int)pos.x] != '0' &&
+				buff->line[(int)pos.x] != '1' &&
+				buff->line[(int)pos.x] != 'P' &&
+				buff->line[(int)pos.x] != 'C' &&
+				buff->line[(int)pos.x] != 'E')
 				close_game("Bad map character.\n", EXIT_FAILURE, data);
 			else
-				set_config(data->rows->line[(int)pos.x], pos, data);
+				set_config(buff->line[(int)pos.x], pos, data);
 		}
 		
 		// check same lenght
-		if (data->rows->next != NULL && data->rows->len != data->rows->next->len)
+		if (buff->next != NULL && buff->len != buff->next->len)
 			close_game("The map is not rectangular.\n", EXIT_FAILURE, data);
-		data->rows = data->rows->next;
+		buff = buff->next;
 	}
 	// check if map has player, collectibles and exit
 	if (data->start_pos.x == -1 && data->start_pos.y == -1)
 		close_game("There is no player in the map.\n", EXIT_FAILURE, data);
 	if (data->exit_pos.x == -1 && data->exit_pos.y == -1)
 		close_game("There is no exit in the map.\n", EXIT_FAILURE, data);
+	if (data->num_collectibles == 0)
+		close_game("There is no collectibles in the map.\n",
+			EXIT_FAILURE, data);
+
+	// init map sizex
+	buff = data->rows;
+	data->map->size.width = data->rows->len;
+	while (buff)
+	{
+		data->map->size.height += 1;
+		buff = buff->next;
+	}
+
+	// init matrix
+	int y;
+
+	y = -1;
+	data->map->matrix = (int **)malloc(sizeof(int *) * data->map->size.height);
+	while (++y < data->map->size.height)
+	{
+		*(data->map->matrix + y) = (int *)malloc(sizeof(int) * data->map->size.width);
+	}
 	
-	// check if map is correctly bordered
+	t_coor	p;
+	char	c;
+	// fill matrix
+	buff = data->rows;
+	p.y = 0;
+	while (buff != NULL)
+	{
+		p.x = -1;
+		while ((c = buff->line[(int)++p.x]) != '\0')
+		{
+			if (c == '0')
+				*(*(data->map->matrix + (int)p.y) + (int)p.x) = MAP_SPACE;
+			if (c == '1')
+				*(*(data->map->matrix + (int)p.y) + (int)p.x) = MAP_WALL;
+			if (c == 'C')
+				*(*(data->map->matrix + (int)p.y) + (int)p.x) = MAP_COLLECTIBLE;
+			if (c == 'P')
+				*(*(data->map->matrix + (int)p.y) + (int)p.x) = MAP_SPACE;
+			if (c == 'E')
+				*(*(data->map->matrix + (int)p.y) + (int)p.x) = MAP_SPACE;
+		}
+		buff = buff->next;
+		p.y++;
+	}
+	
+	// check if matrix is correctly bordered
 	return (data);
+}
+
+void	display_data(t_data *data)
+{
+	int x;
+	int	y;
+
+	printf("\n\n*** POSITIONS ***\n");
+	printf("player: x = %f; y = %f\n", data->start_pos.x, data->start_pos.y);
+	printf("exit: x = %f; y = %f\n", data->exit_pos.x, data->exit_pos.y);
+	printf("\n\n*** COLLECTIBLES ***\n");
+	printf("num collectiblex: %d\n", data->num_collectibles);
+	printf("\n\n*** SIZES ***\n");
+	printf("map size: w = %d; h = %d\n", data->map->size.width, data->map->size.	height);
+	printf("\n\n*** MATRIX ***\n\n");
+	y = -1;
+	while (++y < data->map->size.height)
+	{
+		x = -1;
+		while (++x < data->map->size.width)
+		{
+			printf("%d ", data->map->matrix[y][x]);
+		}
+		printf("\n");
+	}
+	printf("\n\n");
 }
 
 int	main(const int argc, const char *argv[])
@@ -117,7 +195,7 @@ int	main(const int argc, const char *argv[])
 	if (is_valid_args(argc, argv) && (data = init(data)))
 	{
 		data = parse(argv[1], data);
-		printf("start pos x = %f; y = %f\n", data->start_pos.x, data->start_pos.y);
+		display_data(data);
 		close_game("bye.\n", EXIT_SUCCESS, data);
 	}
 	return (0);
