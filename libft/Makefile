@@ -101,12 +101,10 @@ $(NAME):
 	@echo $(NAME) created.
 
 clean:
-	@/bin/rm -rf $(OBJ) $(OBJ_BONUS)
-	@echo Cleaned libft object files.
+	/bin/rm -rf $(OBJ) $(OBJ_BONUS)
 
 fclean: clean
-	@/bin/rm -f $(NAME)
-	@echo $(NAME) Removed.
+	/bin/rm -f $(NAME)
 
 
 re: fclean all

@@ -1,26 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   keyrelease.c                                       :+:      :+:    :+:   */
+/*   render.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: humanfou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/29 14:57:02 by humanfou          #+#    #+#             */
-/*   Updated: 2021/03/07 10:24:20 by humanfou         ###   ########.fr       */
+/*   Created: 2021/09/06 14:54:31 by humanfou          #+#    #+#             */
+/*   Updated: 2021/09/06 14:56:06 by humanfou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "event.h"
+#ifndef RENDER_H
+# define RENDER_H
 
-int	keyrelease(int key, t_data *data)
-{
-	if (key == KEY_Z)
-		data->player->walk_dir.y = 0;
-	else if (key == KEY_S)
-		data->player->walk_dir.y = 0;
-	else if (key == KEY_D)
-		data->player->walk_dir.x = 0;
-	else if (key == KEY_Q)
-		data->player->walk_dir.x = 0;
-	return (0);
-}
+# include "so_long.h"
+
+void	render_rectangle(t_window win, t_coor start, t_size size, int color);
+void	render_map(t_window win, t_map map, t_data data);
+
+#endif

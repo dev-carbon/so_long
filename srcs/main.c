@@ -17,19 +17,31 @@
 #include <stdlib.h>
 #include <fcntl.h>
 #include <utils.h>
+#include "mlx.h"
+#include "event.h"
+#include "render.h"
 
 static t_data	*init(t_data *data)
 {
 	data = (t_data *)malloc(sizeof(t_data));
+	data->window = (t_window *)malloc(sizeof(t_window));
 	data->map = (t_map *)malloc(sizeof(t_map));
 	data->map->size.width = 0;
 	data->map->size.height = 0;
+	data->player = (t_player *)malloc(sizeof(t_player));
+	data->player->pos.x = -1;
+	data->player->pos.y = -1;
+	data->player->walk_dir.x = 0;
+	data->player->walk_dir.y = 0;
+	data->offset.x = 0;
+	data->offset.y = 0;
 	data->num_collectibles = 0;
 	data->exit_pos.x = -1;
 	data->exit_pos.y = -1;
 	data->start_pos.x = -1;
 	data->start_pos.y = -1;
 	data->rows = NULL;
+	data->mv_count = 0;
 	return (data);
 }
 
@@ -63,6 +75,21 @@ static t_data	*set_config(char c,t_coor pos, t_data *data) {
 	return (data);
 }
 
+void display_matrix(int **matrix, t_size size)
+{
+	int	x;
+	int	y;
+
+	y = -1;
+	while (++y < size.height)
+	{
+		x = -1;
+		while (++x < size.width)
+			printf("%d ", matrix[y][x]);
+		printf("\n");
+	}
+}
+
 static t_data	*parse(const char *filename, t_data *data)
 {
 	// getting rows
@@ -84,7 +111,7 @@ static t_data	*parse(const char *filename, t_data *data)
 	pos.y = -1;
 	while (buff != NULL)
 	{
-		printf("-> %s\n", buff->line);
+		// printf("-> %s\n", buff->line);
 		// check bad character
 		pos.x = -1;
 		pos.y++;
@@ -152,41 +179,38 @@ static t_data	*parse(const char *filename, t_data *data)
 			if (c == 'P')
 				*(*(data->map->matrix + (int)p.y) + (int)p.x) = MAP_SPACE;
 			if (c == 'E')
-				*(*(data->map->matrix + (int)p.y) + (int)p.x) = MAP_SPACE;
+				*(*(data->map->matrix + (int)p.y) + (int)p.x) = MAP_EXIT;
 		}
 		buff = buff->next;
 		p.y++;
 	}
-	
-	// check if matrix is correctly bordered
 	return (data);
 }
 
-void	display_data(t_data *data)
+static t_data	*init_matrix(t_data *data)
 {
-	int x;
-	int	y;
+	int	**cmatrix;
+	int	i;
+	int j;
 
-	printf("\n\n*** POSITIONS ***\n");
-	printf("player: x = %f; y = %f\n", data->start_pos.x, data->start_pos.y);
-	printf("exit: x = %f; y = %f\n", data->exit_pos.x, data->exit_pos.y);
-	printf("\n\n*** COLLECTIBLES ***\n");
-	printf("num collectiblex: %d\n", data->num_collectibles);
-	printf("\n\n*** SIZES ***\n");
-	printf("map size: w = %d; h = %d\n", data->map->size.width, data->map->size.	height);
-	printf("\n\n*** MATRIX ***\n\n");
-	y = -1;
-	while (++y < data->map->size.height)
+	cmatrix = (int **)malloc(sizeof(int *) * data->map->size.height);
+	j = -1;
+	while (++j < data->map->size.height)
+		*(cmatrix + j) = (int *)malloc(sizeof(int) * data->map->size.width);	
+	j = -1;
+	while (++j < data->map->size.height)
 	{
-		x = -1;
-		while (++x < data->map->size.width)
-		{
-			printf("%d ", data->map->matrix[y][x]);
-		}
-		printf("\n");
+		i = -1;
+		while (++i < data->map->size.width)
+			cmatrix[j][i] = data->map->matrix[j][i];
 	}
-	printf("\n\n");
+	// check if matrix is correctly bordered
+	if(!is_valid_map(data->start_pos.x, data->start_pos.y, cmatrix, *data->map))
+		close_game("The matrix is not correctly bordered\n", EXIT_FAILURE, data);
+	// display_matrix(cmatrix, data->map->size);
+	return (data);
 }
+
 
 int	main(const int argc, const char *argv[])
 {
@@ -194,9 +218,44 @@ int	main(const int argc, const char *argv[])
 
 	if (is_valid_args(argc, argv) && (data = init(data)))
 	{
-		data = parse(argv[1], data);
-		display_data(data);
-		close_game("bye.\n", EXIT_SUCCESS, data);
+		parse(argv[1], data);
+		init_matrix(data);
+
+		// dislpay matrix in mlx window.
+		data->window->size.width = 980;
+		data->window->size.height = 780;
+		data->window->mlx_ptr = mlx_init();
+		data->window->mlx_win = mlx_new_window(data->window->mlx_ptr, data->window->size.width, data->window->size.height, APP_NAME);
+
+		data->window->img.ptr = mlx_new_image(data->window->mlx_ptr, data->window->size.width, data->window->size.height);
+		data->window->img.data =(int *)mlx_get_data_addr(data->window->img.ptr, &data->window->img.bpp, &data->window->img.line_length, &data->window->img.endian);
+
+		int min = ft_min(data->window->size.width, data->window->size.height);
+		int max = ft_max(data->map->size.width, data->map->size.height);
+		data->tile_size.width = min / max;
+		data->tile_size.height = min / max;
+
+		data->offset.x = (data->window->size.width - data->map->size.width * data->tile_size.width) / 2;
+		data->offset.y = (data->window->size.height - data->map->size.height * data->tile_size.height) / 2;
+
+		// printf("ts: %d\n", tile_size);
+		render_map(*data->window, *data->map, *data);
+		data->player->pos = data->start_pos;
+		// display_data(data);
+
+		// render player
+		data->start_pos.x = data->start_pos.x * data->tile_size.width + data->offset.x;
+		data->start_pos.y = data->start_pos.y * data->tile_size.height + data->offset.y;
+		render_rectangle(*data->window, data->start_pos, data->tile_size, 0xAAAAFF);
+
+		mlx_put_image_to_window(data->window->mlx_ptr, data->window->mlx_win, data->window->img.ptr, 0, 0);
+
+		mlx_hook(data->window->mlx_win, 2, 1L << 0, &keypress, data);
+		mlx_hook(data->window->mlx_win, 3, 1L << 1, &keyrelease, data);
+		mlx_hook(data->window->mlx_win, 33, 1L << 17, &close_game, data);
+		//mlx_loop_hook(data->window->mlx_ptr, &so_long_loop, data);
+		mlx_loop(data->window->mlx_ptr);
+
 	}
 	return (0);
 }

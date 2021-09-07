@@ -19,6 +19,7 @@
 # define KEY_UP 65362
 # define KEY_RIGHT 65363
 # define KEY_DOWN 65364
+
 # define KEY_ESC 65307
 
 # define KEY_Z 122

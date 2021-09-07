@@ -25,10 +25,14 @@ LIBS = -lmlx -lXext -lX11 -lm -lbsd -lft
 INC = -Iincludes \
 	-Ilibft \
 	-Imlx \
+	-Isrcs/event \
+	-Isrcs/render \
 	-Isrcs/utils \
 	-Isrcs/validate \
 
 SRCS = srcs/main.c \
+	$(wildcard srcs/event/*.c) \
+	$(wildcard srcs/render/*.c) \
 	$(wildcard srcs/utils/*.c) \
 	$(wildcard srcs/validate/*.c) \
 
@@ -39,15 +43,16 @@ all: $(NAME)
 $(NAME): $(OBJS)
 	@$(MAKE) -C mlx
 	@$(MAKE) -C libft
-	@$(CC) $(SANITIZE) -o $(NAME) $(OBJS) $(INC) $(LIBS_DIR) $(LIBS)
+	$(CC) $(SANITIZE) -o $(NAME) $(OBJS) $(INC) $(LIBS_DIR) $(LIBS)
 
 clean:
 	@cd libft && $(MAKE) clean
-	@rm -fr *.o
+	@cd mlx && $(MAKE) clean
+	/bin/rm -f *.o
 
 fclean: clean
 	@cd libft && $(MAKE) fclean
-	@rm -fr $(NAME) $(BONUS)
+	/bin/rm -fr $(NAME) $(BONUS)
 
 re: fclean all
 

@@ -11,19 +11,39 @@
 /* ************************************************************************** */
 
 #include "validate.h"
+#include <stdio.h>
+
+// void display_matrix(int **matrix, t_size size)
+// {
+// 	int	x;
+// 	int	y;
+
+// 	y = -1;
+// 	while (++y < size.height)
+// 	{
+// 		x = -1;
+// 		while (++x < size.width)
+// 			printf("%d ", matrix[y][x]);
+// 		printf("\n");
+// 	}
+// }
 
 int	is_valid_map(int x, int y, int **grid, t_map map)
 {
+	// si on depasse les bornes de la carte
 	if (x < 0 || x >= map.size.width ||
-		y < 0 || y >= map.size.height ||
-		*(*(grid + y) + x) == MAP_UNKNOW)
+		y < 0 || y >= map.size.height)
 		return (0);
-	if (*(*(grid + y) + x) == 4 || *(*(grid + y) + x) == 1 ||
-		*(*(grid + y) + x) == 6)
+	if (*(*(grid + y) + x) == MAP_WITNESS ||
+		*(*(grid + y) + x) == MAP_EXIT ||
+		*(*(grid + y) + x) == MAP_WALL)
 		return (1);
-	if (*(*(grid + y) + x) == 0 || *(*(grid + y) + x) == 3 ||
-		*(*(grid + y) + x) == 2)
-		*(*(grid + y) + x) = 4;
+	if (*(*(grid + y) + x) == MAP_SPACE ||
+		*(*(grid + y) + x) == MAP_COLLECTIBLE ||
+		*(*(grid + y) + x) == MAP_EXIT)
+		*(*(grid + y) + x) = MAP_WITNESS;
+	//display_matrix(grid, map.size);
+	//printf("\n\n");
 	if (!is_valid_map(x + 1, y, grid, map))
 		return (0);
 	if (!is_valid_map(x - 1, y, grid, map))
