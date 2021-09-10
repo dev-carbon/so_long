@@ -1,5 +1,9 @@
 {
 	"files.associations": {
-		"validate.h": "c"
+		"validate.h": "c",
+		"utils.h": "c",
+		"render.h": "c",
+		"init.h": "c",
+		"so_long.h": "c"
 	}
 }

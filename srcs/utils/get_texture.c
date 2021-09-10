@@ -1,20 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render.h                                           :+:      :+:    :+:   */
+/*   get_texture.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: humanfou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/06 14:54:31 by humanfou          #+#    #+#             */
-/*   Updated: 2021/09/06 14:56:06 by humanfou         ###   ########.fr       */
+/*   Created: 2021/09/09 18:47:39 by humanfou          #+#    #+#             */
+/*   Updated: 2021/09/09 18:47:53 by humanfou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RENDER_H
-# define RENDER_H
+#include "utils.h"
 
-# include "so_long.h"
-
-void	render_world2d(t_window win, t_map map, t_data data);
-
-#endif
+t_texture	get_texture(t_coor pos, t_map map, t_data data)
+{
+	if (is_wall(pos, map, data.tile_size))
+		return (data.textures[TEXTURE_WALL]);
+	if (is_collectible(pos, map, data.tile_size))
+		return (data.textures[TEXTURE_FISH]);
+	if (is_exit(pos, map, data.tile_size))
+		return (data.textures[TEXTURE_EXIT]);
+	return (data.textures[TEXTURE_WATER]);
+}

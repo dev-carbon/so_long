@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render.h                                           :+:      :+:    :+:   */
+/*   init_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: humanfou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/06 14:54:31 by humanfou          #+#    #+#             */
-/*   Updated: 2021/09/06 14:56:06 by humanfou         ###   ########.fr       */
+/*   Created: 2021/09/10 17:35:45 by humanfou          #+#    #+#             */
+/*   Updated: 2021/09/10 17:35:47 by humanfou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RENDER_H
-# define RENDER_H
+#include "init.h"
 
-# include "so_long.h"
+t_data	*init_player(t_data *data)
+{
+	data->player->pos = data->config->start_pos;
+	return (data);
+}
 
-void	render_world2d(t_window win, t_map map, t_data data);
-
-#endif

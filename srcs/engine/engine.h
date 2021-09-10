@@ -1,29 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render_rectangle.c                                 :+:      :+:    :+:   */
+/*   engine.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: humanfou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/06 14:54:01 by humanfou          #+#    #+#             */
-/*   Updated: 2021/09/06 14:54:21 by humanfou         ###   ########.fr       */
+/*   Created: 2021/09/09 19:18:50 by humanfou          #+#    #+#             */
+/*   Updated: 2021/09/09 19:18:52 by humanfou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#ifndef ENGINE_H
+# define ENGINE_H
 
-#include "render.h"
+# include "so_long.h"
 
-void	render_rectangle(t_window win, t_coor start, t_size size, int color)
-{
-	int		x;
-	int		y;
+void		move_player(t_data *data);
 
-	if (start.x < 0 || start.y < 0)
-		return ;
-	y = start.y - 1;
-	while (++y <= size.height + start.y)
-	{
-		x = start.x - 1;
-		while (++x <= size.width + start.x)
-			win.img.data[(y * win.size.width) + x] = color;
-	}
-}
+#endif

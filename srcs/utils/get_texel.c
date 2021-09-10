@@ -1,20 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render.h                                           :+:      :+:    :+:   */
+/*   get_texel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: humanfou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/06 14:54:31 by humanfou          #+#    #+#             */
-/*   Updated: 2021/09/06 14:56:06 by humanfou         ###   ########.fr       */
+/*   Created: 2021/09/09 18:48:01 by humanfou          #+#    #+#             */
+/*   Updated: 2021/09/09 18:48:03 by humanfou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RENDER_H
-# define RENDER_H
+#include "utils.h"
 
-# include "so_long.h"
+t_coor	get_texel(t_coor pos, t_size texture_size, t_size tile_size)
+{
+	t_coor texel;
 
-void	render_world2d(t_window win, t_map map, t_data data);
-
-#endif
+	texel.x = (pos.x * texture_size.width / tile_size.width) % texture_size.width;
+	texel.y = (pos.y * texture_size.height / tile_size.height) % texture_size.height;
+	return (texel);
+}
