@@ -36,4 +36,3 @@ int	is_valid_map(int x, int y, int **grid, t_map map)
 		return (0);
 	return (1);
 }
-

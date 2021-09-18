@@ -25,14 +25,22 @@ LIBS = -lmlx -lXext -lX11 -lm -lbsd -lft
 INC = -Iincludes \
 	-Ilibft \
 	-Imlx \
+	-Isrcs/drivers \
+	-Isrcs/engine \
 	-Isrcs/event \
+	-Isrcs/init \
 	-Isrcs/render \
+	-Isrcs/set \
 	-Isrcs/utils \
 	-Isrcs/validate \
 
 SRCS = srcs/main.c \
+	$(wildcard srcs/drivers/*.c) \
+	$(wildcard srcs/engine/*.c) \
 	$(wildcard srcs/event/*.c) \
+	$(wildcard srcs/init/*.c) \
 	$(wildcard srcs/render/*.c) \
+	$(wildcard srcs/set/*.c) \
 	$(wildcard srcs/utils/*.c) \
 	$(wildcard srcs/validate/*.c) \
 

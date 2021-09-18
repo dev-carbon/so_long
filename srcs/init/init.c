@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_data.c                                        :+:      :+:    :+:   */
+/*   set_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: humanfou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -11,29 +11,24 @@
 /* ************************************************************************** */
 
 #include "init.h"
-#include "utils.h"
 
-t_data	*init_data(t_data *data)
+t_data	*init(t_data *data)
 {
 	data = (t_data *)malloc(sizeof(t_data));
-	data->window = (t_window *)malloc(sizeof(t_window));
-	data->map = (t_map *)malloc(sizeof(t_map));
-	data->player = (t_player *)malloc(sizeof(t_player));
-	if (!data || !data->window || data->map || data->player)
+	if (data == NULL)
 		close_game("Unable to allocate sufficient memory\n", 1, NULL);
-	data->map->size.width = 0;
-	data->map->size.height = 0;
-	data->player->pos.x = -1;
-	data->player->pos.y = -1;
-	data->player->walk_dir.x = 0;
-	data->player->walk_dir.y = 0;
-	data->offset.x = 0;
-	data->offset.y = 0;
-	data->num_collectibles = 0;
-	data->exit_pos.x = -1;
-	data->exit_pos.y = -1;
-	data->start_pos.x = -1;
-	data->start_pos.y = -1;
+	data->window = (t_window *)malloc(sizeof(t_window));
+	if (data->window == NULL)
+		close_game("Unable to allocate sufficient memory\n", 1, data);
+	data->map = (t_map *)malloc(sizeof(t_map));
+	if (data->map == NULL)
+		close_game("Unable to allocate sufficient memory\n", 1, data);
+	data->player = (t_player *)malloc(sizeof(t_player));
+	if (data->player == NULL)
+		close_game("Unable to allocate sufficient memory\n", 1, data);
+	data->config = (t_config *)malloc(sizeof(t_config));
+	if (data->config == NULL)
+		close_game("Unable to allocate sufficient memory\n", 1, data);
 	data->rows = NULL;
 	return (data);
 }

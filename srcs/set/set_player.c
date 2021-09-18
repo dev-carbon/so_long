@@ -1,22 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_valid_args.c                                    :+:      :+:    :+:   */
+/*   set_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: humanfou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/04 11:23:00 by humanfou          #+#    #+#             */
-/*   Updated: 2021/09/04 11:23:02 by humanfou         ###   ########.fr       */
+/*   Created: 2021/09/10 17:35:45 by humanfou          #+#    #+#             */
+/*   Updated: 2021/09/10 17:35:47 by humanfou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "validate.h"
+#include "init.h"
 
-int is_valid_args(const int ac, const char **av)
+t_data	*set_player(t_data *data)
 {
-    if (ac != 2)
-        close_game("Invalid number of arguments.\n", EXIT_FAILURE, NULL);
-    else if (!is_valid_file_extension(av[1], ".ber"))
-        close_game("Invalid file extension.\n", EXIT_FAILURE, NULL);
-    return (1);
+	data->player->pos = data->config->start_pos;
+	return (data);
 }
+

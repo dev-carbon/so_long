@@ -11,8 +11,6 @@
 /* ************************************************************************** */
 
 #include "validate.h"
-#include "libft.h"
-#include <stdio.h>
 
 int is_valid_file_extension(const char *filename, const char *ext)
 {

@@ -4,6 +4,7 @@
 		"utils.h": "c",
 		"render.h": "c",
 		"init.h": "c",
-		"so_long.h": "c"
+		"so_long.h": "c",
+		"drivers.h": "c"
 	}
 }

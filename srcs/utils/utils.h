@@ -14,8 +14,6 @@
 # define UTILS_H
 
 # include "so_long.h"
-# include <stdio.h>
-# include <math.h>
 
 int close_game(char *message, int status, t_data *data);
 void	display_data(t_data *data);

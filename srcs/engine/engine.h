@@ -15,5 +15,6 @@
 # include "so_long.h"
 
 void		move_player(t_data *data);
+int			run(t_data *data);
 
 #endif

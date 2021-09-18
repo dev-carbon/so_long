@@ -10,10 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <unistd.h>
 #include "utils.h"
-#include "libft.h"
 
 int close_game(char *message, int status, t_data *data)
 {

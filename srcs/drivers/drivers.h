@@ -1,20 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_player.c                                      :+:      :+:    :+:   */
+/*   drivers.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: humanfou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/10 17:35:45 by humanfou          #+#    #+#             */
-/*   Updated: 2021/09/10 17:35:47 by humanfou         ###   ########.fr       */
+/*   Created: 2021/09/18 04:16:31 by humanfou          #+#    #+#             */
+/*   Updated: 2021/09/18 04:16:32 by humanfou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "init.h"
+#ifndef DRIVERS_H
+# define DRIVERS_H
 
-t_data	*init_player(t_data *data)
-{
-	data->player->pos = data->config->start_pos;
-	return (data);
-}
+# include "so_long.h"
 
+t_data	*parse(const char *filename, t_data *data);
+t_data	*setup(t_data *data);
+
+#endif

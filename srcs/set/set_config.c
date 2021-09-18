@@ -1,19 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_params.c                                      :+:      :+:    :+:   */
+/*   set_config.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: humanfou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/10 17:36:54 by humanfou          #+#    #+#             */
-/*   Updated: 2021/09/10 17:36:56 by humanfou         ###   ########.fr       */
+/*   Created: 2021/09/18 04:00:40 by humanfou          #+#    #+#             */
+/*   Updated: 2021/09/18 04:00:41 by humanfou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "init.h"
+#include "set.h"
 
-t_data	*init_params(t_data *data)
-{
+t_data	*set_config(t_data *data) {
 	int min;
 	int max;
 

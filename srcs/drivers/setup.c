@@ -1,22 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_valid_args.c                                    :+:      :+:    :+:   */
+/*   set.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: humanfou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/04 11:23:00 by humanfou          #+#    #+#             */
-/*   Updated: 2021/09/04 11:23:02 by humanfou         ###   ########.fr       */
+/*   Created: 2021/09/18 04:16:11 by humanfou          #+#    #+#             */
+/*   Updated: 2021/09/18 04:16:13 by humanfou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "validate.h"
+#include "drivers.h"
 
-int is_valid_args(const int ac, const char **av)
+t_data	*setup(t_data *data)
 {
-    if (ac != 2)
-        close_game("Invalid number of arguments.\n", EXIT_FAILURE, NULL);
-    else if (!is_valid_file_extension(av[1], ".ber"))
-        close_game("Invalid file extension.\n", EXIT_FAILURE, NULL);
-    return (1);
+	set_window(data);
+	set_config(data);
+	set_map(data);
+	set_player(data);
+	set_textures(data);
+	return (data);
 }

@@ -14,11 +14,11 @@
 
 t_texture	get_texture(t_coor pos, t_map map, t_data data)
 {
-	if (is_wall(pos, map, data.tile_size))
+	if (is_wall(pos, map, data.config->tile_size))
 		return (data.textures[TEXTURE_WALL]);
-	if (is_collectible(pos, map, data.tile_size))
+	if (is_collectible(pos, map, data.config->tile_size))
 		return (data.textures[TEXTURE_FISH]);
-	if (is_exit(pos, map, data.tile_size))
+	if (is_exit(pos, map, data.config->tile_size))
 		return (data.textures[TEXTURE_EXIT]);
 	return (data.textures[TEXTURE_WATER]);
 }

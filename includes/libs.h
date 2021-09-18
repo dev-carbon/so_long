@@ -1,22 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_valid_args.c                                    :+:      :+:    :+:   */
+/*   libs.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: humanfou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/04 11:23:00 by humanfou          #+#    #+#             */
-/*   Updated: 2021/09/04 11:23:02 by humanfou         ###   ########.fr       */
+/*   Created: 2021/09/18 01:07:19 by humanfou          #+#    #+#             */
+/*   Updated: 2021/09/18 01:07:20 by humanfou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "validate.h"
+#ifndef LIBS_H
+# define LIBS_H
 
-int is_valid_args(const int ac, const char **av)
-{
-    if (ac != 2)
-        close_game("Invalid number of arguments.\n", EXIT_FAILURE, NULL);
-    else if (!is_valid_file_extension(av[1], ".ber"))
-        close_game("Invalid file extension.\n", EXIT_FAILURE, NULL);
-    return (1);
-}
+# include <stdlib.h>
+# include <stdio.h>
+# include <math.h>
+# include <fcntl.h>
+
+#endif

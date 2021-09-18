@@ -10,13 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef INIT_H
-# define INIT_H
+#ifndef set_H
+# define set_H
 
 # include "so_long.h"
 
-t_data	*init_data(t_data *data);
-t_data	*init_matrix(t_data *data);
-t_data	*init_window(t_data *data);
+t_data	*init(t_data *data);
 
 #endif
