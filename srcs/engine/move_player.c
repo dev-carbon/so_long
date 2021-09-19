@@ -12,7 +12,7 @@
 
 #include "engine.h"
 
-void	move_player(t_data *data)
+t_data	*move_player(t_data *data)
 {
 	t_coor	pos;
 
@@ -21,12 +21,26 @@ void	move_player(t_data *data)
 	pos.y += data->player->walk_dir.y;
 	if (pos.x < 0)
 		pos.x = 0;
-	if (pos.x > data->map->size.width)
+	else if (pos.x > data->map->size.width)
 		pos.x = data->map->size.width;
 	if (pos.y < 0)
 		pos.y = 0;
-	if (pos.y > data->map->size.height)
+	else if (pos.y > data->map->size.height)
 		pos.y = data->map->size.height;
+	if (data->map->matrix[pos.y][pos.x] == MAP_COLLECTIBLE)
+	{
+		data->player->collected++;
+		data->map->matrix[pos.y][pos.x] = MAP_SPACE;
+	}
+	else if (data->map->matrix[pos.y][pos.x] == MAP_EXIT)
+	{
+		data->map->matrix[pos.y][pos.x] = MAP_SPACE;
+		close_game("player exited map\n", EXIT_SUCCESS, data);
+	}
 	if (data->map->matrix[pos.y][pos.x] != MAP_WALL)
+	{
 		data->player->pos = pos;
+		printf("movement count: %d\n", ++data->player->move);
+	}
+	return (data);
 }

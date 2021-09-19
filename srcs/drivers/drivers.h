@@ -17,5 +17,7 @@
 
 t_data	*parse(const char *filename, t_data *data);
 t_data	*setup(t_data *data);
+void	start(t_data *data);
+void	refresh(t_data *data);
 
 #endif

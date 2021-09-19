@@ -20,12 +20,13 @@ static t_rows	*add_rows(char *line, t_data *data)
 	new = (t_rows *)malloc(sizeof(t_rows));
 	if (new == NULL)
 		close_game("Unable to allocate enougth memory\n", 1, data);
-	new->line = line;
+	new->line = ft_strdup(line);
 	new->len = ft_strlen(line);
 	new->next = NULL;
 	if (data->rows == NULL)
 		data->rows = new;
-	else {
+	else
+	{
 		last = data->rows;
 		while (last->next != NULL)
 			last = last->next;
@@ -41,6 +42,7 @@ static t_data	*get_map_elements(t_data *data)
 
 	pos.y = 0;
 	buff = data->rows;
+	data->config->num_collectibles = 0;
 	while (buff)
 	{
 		pos.x = -1;
@@ -54,6 +56,7 @@ static t_data	*get_map_elements(t_data *data)
 				data->config->exit_pos = pos;
 		}
 		buff = buff->next;
+		pos.y++;
 	}
 	return (data);
 }
@@ -67,8 +70,9 @@ t_data	*parse(const char *filename, t_data *data)
 	{
 		data->ret = get_next_line(data->fd, &data->line);
 		add_rows(data->line, data);
+		free(data->line);
 		if (data->ret == -1 || data->ret == 0)
-			break;
+			break ;
 	}
 	if (is_valid_rows(data))
 		;

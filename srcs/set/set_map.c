@@ -60,9 +60,10 @@ t_data	*set_map(t_data *data)
 	y = -1;
 	while (++y < data->map->size.height)
 	{
-		*(data->map->matrix + y) = (int *)malloc(sizeof(int) * data->map->size.width);
+		*(data->map->matrix + y) = (int *)malloc(sizeof(int)
+				* data->map->size.width);
 		if (*(data->map->matrix + y) == NULL)
-			close_game("Unable to allocate sufficient memory for map\n", 1, data);
+			close_game("Unable to allocate enougth memory for map\n", 1, data);
 	}
 	fill_matrix(data);
 	return (data);

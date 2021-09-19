@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CONST_H
-# define CONST_H
+#ifndef DEFS_H
+# define DEFS_H
 
 # define APP_NAME "so_long"
 
@@ -27,12 +27,13 @@
 # define TEXTURE_FISH 2
 # define TEXTURE_DOLPHIN 3
 # define TEXTURE_EXIT 4
+# define TEXTURE_SUCCESS 5
 
 # define RED 0xAA0000
 # define GREEN 0x00AA00
 # define BLUE 0x0000AA
 
-# define WIN_WIDTH 980
+# define WIN_WIDTH 1080
 # define WIN_HEIGHT 780
 
 #endif

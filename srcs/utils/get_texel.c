@@ -14,9 +14,11 @@
 
 t_coor	get_texel(t_coor pos, t_size texture_size, t_size tile_size)
 {
-	t_coor texel;
+	t_coor	texel;
 
-	texel.x = (pos.x * texture_size.width / tile_size.width) % texture_size.width;
-	texel.y = (pos.y * texture_size.height / tile_size.height) % texture_size.height;
+	texel.x = (pos.x * texture_size.width / tile_size.width)
+		% texture_size.width;
+	texel.y = (pos.y * texture_size.height / tile_size.height)
+		% texture_size.height;
 	return (texel);
 }

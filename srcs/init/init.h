@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef set_H
-# define set_H
+#ifndef INIT_H
+# define INIT_H
 
 # include "so_long.h"
 

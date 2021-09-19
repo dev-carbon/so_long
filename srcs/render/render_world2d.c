@@ -26,7 +26,8 @@ static void	render_map(t_window win, t_map map, t_data data)
 		{
 			texture = get_texture(pos, map, data);
 			texel = get_texel(pos, texture.size, data.config->tile_size);
-			win.img.data[(win.size.width * pos.y) + pos.x] = texture.img.data[(texture.size.width * texel.y) + texel.x];
+			win.img.data[(win.size.width * pos.y) + pos.x]
+				= texture.img.data[(texture.size.width * texel.y) + texel.x];
 		}
 	}
 }
@@ -48,7 +49,8 @@ static void	render_player(t_window win, t_player player, t_data data)
 		while (pos.x < start.x + data.config->tile_size.width)
 		{
 			texel = get_texel(pos, texture.size, data.config->tile_size);
-			win.img.data[(win.size.width * pos.y) + pos.x] = texture.img.data[(texture.size.width * texel.y) + texel.x];
+			win.img.data[(win.size.width * pos.y) + pos.x]
+				= texture.img.data[(texture.size.width * texel.y) + texel.x];
 			pos.x++;
 		}
 		pos.y++;

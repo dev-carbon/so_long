@@ -15,52 +15,54 @@
 
 typedef struct s_coor
 {
-	int  x;
-	int  y;
-}   t_coor;
+	int	x;
+	int	y;
+}	t_coor;
 
 typedef struct s_size
 {
-	int width;
-	int height;
-}   t_size;
+	int	width;
+	int	height;
+}	t_size;
 
 typedef struct s_rows
 {
-	char    *line;
-	int     len;
-	struct s_rows *next;
-}   t_rows;
+	char			*line;
+	int				len;
+	struct s_rows	*next;
+}	t_rows;
 
 typedef struct s_map {
 	t_size	size;
 	int		**matrix;
-}   t_map;
+}	t_map;
 
 typedef struct s_image
 {
-	void    *ptr;
-	int     *data;
-	int     bpp;
-	int     line_length;
-	int     endian;
-}   t_image;
+	void	*ptr;
+	int		*data;
+	int		bpp;
+	int		line_length;
+	int		endian;
+}	t_image;
 
 typedef struct s_window
 {
-	void    *mlx_ptr;
-	void    *mlx_win;
-	t_image img;
-	t_size  size;
-}   t_window;
+	void	*mlx_ptr;
+	void	*mlx_win;
+	t_image	img;
+	t_size	size;
+}	t_window;
 
 typedef struct s_player
 {
-	t_coor  pos;
+	t_coor	pos;
 	t_coor	walk_dir;
-}   t_player;
+	int		move;
+	int		collected;
+}	t_player;
 
-typedef struct	s_texture
+typedef struct s_texture
 {
 	char	*path;
 	t_size	size;
@@ -69,26 +71,25 @@ typedef struct	s_texture
 
 typedef struct s_config
 {
-	int			num_collectibles;
-	t_size		screen_size;
-	t_size		tile_size;
-	t_coor		offset;
-	t_coor		start_pos;
-	t_coor		exit_pos;
+	int		num_collectibles;
+	t_size	screen_size;
+	t_size	tile_size;
+	t_coor	offset;
+	t_coor	start_pos;
+	t_coor	exit_pos;
 }	t_config;
 
-typedef struct s_data 
+typedef struct s_data
 {
 	int			fd;
 	int			ret;
 	char		*line;
-	char		**split;
 	t_rows		*rows;
 	t_config	*config;
-	t_window    *window;
-	t_texture	textures[5];
+	t_window	*window;
 	t_map		*map;
-	t_player    *player;
+	t_player	*player;
+	t_texture	textures[5];
 }	t_data;
 
 #endif

@@ -17,6 +17,7 @@ t_data	*set_window(t_data *data)
 	data->window->mlx_ptr = mlx_init();
 	data->window->size.width = WIN_WIDTH;
 	data->window->size.height = WIN_HEIGHT;
-	data->window->mlx_win = mlx_new_window(data->window->mlx_ptr, data->window->size.width, data->window->size.height, APP_NAME);
+	data->window->mlx_win = mlx_new_window(data->window->mlx_ptr,
+			data->window->size.width, data->window->size.height, APP_NAME);
 	return (data);
 }

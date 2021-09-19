@@ -14,17 +14,17 @@
 
 int	is_valid_map(int x, int y, int **grid, t_map map)
 {
-	if (x < 0 || x >= map.size.width ||
-		y < 0 || y >= map.size.height)
+	if (x < 0 || x >= map.size.width
+		|| y < 0 || y >= map.size.height)
 		return (0);
-	if (*(*(grid + y) + x) == MAP_WITNESS ||
-		*(*(grid + y) + x) == MAP_EXIT ||
-		*(*(grid + y) + x) == MAP_WALL)
+	if (*(*(grid + y) + x) == MAP_WITNESS
+		|| *(*(grid + y) + x) == MAP_EXIT
+		|| *(*(grid + y) + x) == MAP_WALL)
 		return (1);
-	if (*(*(grid + y) + x) == MAP_SPACE ||
-		*(*(grid + y) + x) == MAP_COLLECTIBLE ||
-		*(*(grid + y) + x) == MAP_PLAYER ||
-		*(*(grid + y) + x) == MAP_EXIT)
+	if (*(*(grid + y) + x) == MAP_SPACE
+		|| *(*(grid + y) + x) == MAP_COLLECTIBLE
+		|| *(*(grid + y) + x) == MAP_PLAYER
+		|| *(*(grid + y) + x) == MAP_EXIT)
 		*(*(grid + y) + x) = MAP_WITNESS;
 	if (!is_valid_map(x + 1, y, grid, map))
 		return (0);

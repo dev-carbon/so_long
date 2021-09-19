@@ -12,14 +12,14 @@
 
 #include "validate.h"
 
-int is_valid_file_extension(const char *filename, const char *ext)
+int	is_valid_file_extension(const char *filename, const char *ext)
 {
-    int     len;
-    int     index;
+	int	len;
+	int	index;
 
-    len = ft_strlen(ext);
-    index = ft_strlen(filename) - len;
-    if (ft_strncmp(filename + index, ext, len) != 0) 
-        return (0);
-    return (1);
+	len = ft_strlen(ext);
+	index = ft_strlen(filename) - len;
+	if (ft_strncmp(filename + index, ext, len) != 0)
+		return (0);
+	return (1);
 }

@@ -16,12 +16,12 @@ int	main(const int argc, const char *argv[])
 {
 	t_data	*data;
 
-	if (is_valid_args(argc, argv) && (data = init(data)))
+	if (is_valid_args(argc, argv))
 	{
+		data = init(data);
 		parse(argv[1], data);
 		setup(data);
-		display_data(data);
-		run(data);
+		start(data);
 		mlx_hook(data->window->mlx_win, 2, 1L << 0, &keypress, data);
 		mlx_hook(data->window->mlx_win, 3, 1L << 1, &keyrelease, data);
 		mlx_hook(data->window->mlx_win, 33, 1L << 17, &close_game, data);

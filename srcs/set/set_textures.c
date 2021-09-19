@@ -14,11 +14,13 @@
 
 static t_texture	*load_texture(t_window win, t_texture *texture)
 {
-	if (!(texture->img.ptr = mlx_xpm_file_to_image(win.mlx_ptr, texture->path,
-		&texture->size.width, &texture->size.height)))
+	texture->img.ptr = mlx_xpm_file_to_image(win.mlx_ptr, texture->path,
+			&texture->size.width, &texture->size.height);
+	if (!texture->img.ptr)
 		return (NULL);
-	if (!(texture->img.data = (int*)mlx_get_data_addr(texture->img.ptr,
-		&texture->img.bpp, &texture->img.line_length, &texture->img.endian)))
+	texture->img.data = (int *)mlx_get_data_addr(texture->img.ptr,
+			&texture->img.bpp, &texture->img.line_length, &texture->img.endian);
+	if (!texture->img.data)
 		return (NULL);
 	return (texture);
 }
