@@ -12,7 +12,7 @@
 
 #include "engine.h"
 
-static t_data	*set_collected(t_coor pos, t_data *data)
+static t_data	*set_items(t_coor pos, t_data *data)
 {
 	t_collectibles	*buff;
 
@@ -21,7 +21,7 @@ static t_data	*set_collected(t_coor pos, t_data *data)
 	{
 		if (buff->pos.x == pos.x && buff->pos.y == pos.y)
 		{
-			buff->is_collected = 1;
+			buff->is_items = 1;
 			break ;
 		}
 		buff = buff->next;
@@ -33,10 +33,10 @@ t_data	*collect(t_coor pos, t_data *data)
 {
 	if (data->map->matrix[pos.y][pos.x] == MAP_COLLECTIBLE)
 	{
-		data->player->collected++;
+		data->player->items++;
 		data->config->num_collectibles--;
 		data->map->matrix[pos.y][pos.x] = MAP_SPACE;
-		set_collected(pos, data);
+		set_items(pos, data);
 	}
 	return (data);
 }

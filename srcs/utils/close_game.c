@@ -69,12 +69,22 @@ static void	write_message(char *message, int status)
 	}
 }
 
+static void	write_score(int items, int moves)
+{
+	ft_putstr("items items: ");
+	ft_putnbr(items);
+	ft_putchar('\n');;
+	ft_putstr("Total move: ");
+	ft_putnbr(moves);
+	ft_putchar('\n');;
+}
+
 int	close_game(char *message, int status, t_data *data)
 {
 	write_message(message, status);
 	if (data != NULL)
 	{
-		printf("Collected items: %d collectible(s)\n", data->player->collected);
+		write_score(data->player->items, data->player->moves);
 		destroy_rows(data->rows);
 		destroy_map(data->map);
 		destroy_window(data->window);

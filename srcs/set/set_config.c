@@ -21,7 +21,7 @@ static	t_data	*add_collectible(t_coor pos, t_data *data)
 	if (!new)
 		close_game("Unable to allocate enougth memory for collectible", 1, data);
 	new->pos = pos;
-	new->is_collected = 0;
+	new->is_items = 0;
 	new->next = NULL;
 	if (data->config->collectibles == NULL)
 		data->config->collectibles = new;

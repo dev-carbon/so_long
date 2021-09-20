@@ -81,7 +81,7 @@ static void	render_collectibles(t_window win, t_collectibles *c, t_data data)
 		start = pos;
 		while (pos.y < start.y + data.config->tile_size.height)
 		{
-			if (!buff->is_collected)
+			if (!buff->is_items)
 			{
 				pos.x = start.x;
 				while (pos.x < start.x + data.config->tile_size.width)

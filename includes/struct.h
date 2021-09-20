@@ -34,7 +34,7 @@ typedef struct s_rows
 
 typedef struct s_collectibles
 {
-	int						is_collected;
+	int						is_items;
 	t_coor					pos;
 	struct s_collectibles	*next;
 }	t_collectibles;
@@ -65,8 +65,8 @@ typedef struct s_player
 {
 	t_coor	pos;
 	t_coor	walk_dir;
-	int		move;
-	int		collected;
+	int		moves;
+	int		items;
 }	t_player;
 
 typedef struct s_asset
