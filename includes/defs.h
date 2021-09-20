@@ -22,18 +22,16 @@
 # define MAP_EXIT 4
 # define MAP_WITNESS 5
 
-# define TEXTURE_WALL 0
-# define TEXTURE_WATER 1
-# define TEXTURE_FISH 2
-# define TEXTURE_DOLPHIN 3
-# define TEXTURE_EXIT 4
-# define TEXTURE_SUCCESS 5
+# define ASSET_WALL 0
+# define ASSET_SPACE 1
+# define ASSET_COLLECTIBLE 2
+# define ASSET_PLAYER 3
+# define ASSET_EXIT 4
 
 # define RED 0xAA0000
 # define GREEN 0x00AA00
 # define BLUE 0x0000AA
 
-# define WIN_WIDTH 1080
-# define WIN_HEIGHT 780
+# define TILE_SIZE 64
 
 #endif

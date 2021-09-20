@@ -12,13 +12,13 @@
 
 #include "utils.h"
 
-t_coor	get_texel(t_coor pos, t_size texture_size, t_size tile_size)
+t_coor	get_texel(t_coor pos, t_size asset_size, t_size tile_size)
 {
 	t_coor	texel;
 
-	texel.x = (pos.x * texture_size.width / tile_size.width)
-		% texture_size.width;
-	texel.y = (pos.y * texture_size.height / tile_size.height)
-		% texture_size.height;
+	texel.x = (pos.x * asset_size.width / tile_size.width)
+		% asset_size.width;
+	texel.y = (pos.y * asset_size.height / tile_size.height)
+		% asset_size.height;
 	return (texel);
 }

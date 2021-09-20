@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_texture.c                                      :+:      :+:    :+:   */
+/*   get_asset.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: humanfou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,13 +12,13 @@
 
 #include "utils.h"
 
-t_texture	get_texture(t_coor pos, t_map map, t_data data)
+t_asset	get_asset(t_coor pos, t_map map, t_data data)
 {
 	if (is_wall(pos, map, data.config->tile_size))
-		return (data.textures[TEXTURE_WALL]);
+		return (data.assets[ASSET_WALL]);
 	if (is_collectible(pos, map, data.config->tile_size))
-		return (data.textures[TEXTURE_FISH]);
+		return (data.assets[ASSET_COLLECTIBLE]);
 	if (is_exit(pos, map, data.config->tile_size))
-		return (data.textures[TEXTURE_EXIT]);
-	return (data.textures[TEXTURE_WATER]);
+		return (data.assets[ASSET_EXIT]);
+	return (data.assets[ASSET_SPACE]);
 }

@@ -43,11 +43,11 @@ void	display_data(t_data *data)
 		printf("\n");
 	}
 	printf("\n\n");
-	printf("\n\n*** TEXTURES ***\n");
+	printf("\n\n*** assets ***\n");
 	int i;
 
 	i = -1;
 	while (++i < 5)
-		printf(" path %d : %s\n", i, data->textures[i].path);
+		printf(" path %d : %s\n", i, data->assets[i].path);
 }
 

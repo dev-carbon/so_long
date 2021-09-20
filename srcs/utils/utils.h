@@ -24,7 +24,7 @@ int			is_space(t_coor pos, t_map map, t_size tile_size);
 int			is_collectible(t_coor pos, t_map map, t_size tile_size);
 int			is_player(t_coor pos, t_map map, t_size tile_size);
 int			is_exit(t_coor pos, t_map map, t_size tile_size);
-t_texture	get_texture(t_coor pos, t_map map, t_data data);
-t_coor		get_texel(t_coor pos, t_size texture_size, t_size tile_size);
+t_asset	get_asset(t_coor pos, t_map map, t_data data);
+t_coor		get_texel(t_coor pos, t_size asset_size, t_size tile_size);
 
 #endif

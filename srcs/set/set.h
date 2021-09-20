@@ -18,7 +18,7 @@
 t_data	*set_config(t_data *data);
 t_data	*set_map(t_data *data);
 t_data	*set_player(t_data *data);
-t_data	*set_textures(t_data *data);
+t_data	*set_assets(t_data *data);
 t_data	*set_window(t_data *data);
 
 #endif

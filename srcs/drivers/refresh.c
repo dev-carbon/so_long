@@ -15,7 +15,6 @@
 void	refresh(t_data *data)
 {
 	mlx_destroy_image(data->window->mlx_ptr, data->window->img.ptr);
-	mlx_destroy_window(data->window->mlx_ptr, data->window->mlx_win);
 	data->window->img.ptr = mlx_new_image(data->window->mlx_ptr,
 			data->window->size.width, data->window->size.height);
 	data->window->img.data = (int *)mlx_get_data_addr(data->window->img.ptr,

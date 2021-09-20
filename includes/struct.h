@@ -62,12 +62,12 @@ typedef struct s_player
 	int		collected;
 }	t_player;
 
-typedef struct s_texture
+typedef struct s_asset
 {
 	char	*path;
 	t_size	size;
 	t_image	img;
-}	t_texture;
+}	t_asset;
 
 typedef struct s_config
 {
@@ -89,7 +89,7 @@ typedef struct s_data
 	t_window	*window;
 	t_map		*map;
 	t_player	*player;
-	t_texture	textures[5];
+	t_asset	assets[5];
 }	t_data;
 
 #endif
