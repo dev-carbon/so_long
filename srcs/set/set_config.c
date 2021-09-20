@@ -12,9 +12,13 @@
 
 #include "set.h"
 
-t_data	*set_config(t_data *data)
+t_data	*set_config(t_data *data, char c, t_coor pos)
 {
-	data->config->tile_size.width = TILE_SIZE;
-	data->config->tile_size.height = TILE_SIZE;
+	if (c == 'C')
+		data->config->num_collectibles += 1;
+	if (c == 'P')
+		data->config->start_pos = pos;
+	if (c == 'E')
+		data->config->exit_pos = pos;
 	return (data);
 }

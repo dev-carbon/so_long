@@ -15,7 +15,7 @@
 
 # include "so_long.h"
 
-t_data	*set_config(t_data *data);
+t_data	*set_config(t_data *data, char c, t_coor pos);
 t_data	*set_map(t_data *data);
 t_data	*set_player(t_data *data);
 t_data	*set_assets(t_data *data);

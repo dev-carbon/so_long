@@ -42,7 +42,7 @@ static void	render_player(t_window win, t_player player, t_data data)
 	pos.y = player.pos.y * data.config->tile_size.height;
 	pos.x = player.pos.x * data.config->tile_size.width;
 	start = pos;
-	asset = data.assets[ASSET_DOLPHIN];
+	asset = data.assets[ASSET_PLAYER];
 	while (pos.y < start.y + data.config->tile_size.height)
 	{
 		pos.x = start.x;

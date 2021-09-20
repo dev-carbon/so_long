@@ -29,10 +29,6 @@ void	display_data(t_data *data)
 	printf("\n\n*** SIZES ***\n");
 	printf("map size: w = %d; h = %d\n", data->map->size.width,
 		data->map->size.height);
-	printf("offset : x = %d; y = %d\n", data->config->offset.x,
-		data->config->offset.y);
-	printf("tile size: w = %d; h = %d\n", data->config->tile_size.width,
-		data->config->tile_size.height);
 	printf("\n\n*** MATRIX ***\n\n");
 	y = -1;
 	while (++y < data->map->size.height)

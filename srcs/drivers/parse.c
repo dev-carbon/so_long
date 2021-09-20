@@ -42,19 +42,11 @@ static t_data	*get_map_elements(t_data *data)
 
 	pos.y = 0;
 	buff = data->rows;
-	data->config->num_collectibles = 0;
 	while (buff)
 	{
 		pos.x = -1;
 		while (buff->line[++pos.x] != '\0')
-		{
-			if (buff->line[pos.x] == 'C')
-				data->config->num_collectibles += 1;
-			if (buff->line[pos.x] == 'P')
-				data->config->start_pos = pos;
-			if (buff->line[pos.x] == 'E')
-				data->config->exit_pos = pos;
-		}
+			set_config(data, buff->line[pos.x], pos);
 		buff = buff->next;
 		pos.y++;
 	}

@@ -6,6 +6,7 @@
 		"init.h": "c",
 		"so_long.h": "c",
 		"drivers.h": "c",
-		"engine.h": "c"
+		"engine.h": "c",
+		"set.h": "c"
 	}
 }

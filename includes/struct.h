@@ -72,9 +72,7 @@ typedef struct s_asset
 typedef struct s_config
 {
 	int		num_collectibles;
-	t_size	screen_size;
 	t_size	tile_size;
-	t_coor	offset;
 	t_coor	start_pos;
 	t_coor	exit_pos;
 }	t_config;

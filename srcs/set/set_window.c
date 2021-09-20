@@ -15,8 +15,10 @@
 t_data	*set_window(t_data *data)
 {
 	data->window->mlx_ptr = mlx_init();
-	data->window->size.width = data->map->size.width;
-	data->window->size.height = data->map->size.height;
+	data->window->size.width = data->map->size.width
+		* data->config->tile_size.width;
+	data->window->size.height = data->map->size.height
+		* data->config->tile_size.height;
 	data->window->mlx_win = mlx_new_window(data->window->mlx_ptr,
 			data->window->size.width, data->window->size.height, APP_NAME);
 	return (data);
