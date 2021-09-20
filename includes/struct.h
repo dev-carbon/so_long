@@ -32,6 +32,13 @@ typedef struct s_rows
 	struct s_rows	*next;
 }	t_rows;
 
+typedef struct s_collectibles
+{
+	int						is_collected;
+	t_coor					pos;
+	struct s_collectibles	*next;
+}	t_collectibles;
+
 typedef struct s_map {
 	t_size	size;
 	int		**matrix;
@@ -72,6 +79,7 @@ typedef struct s_asset
 typedef struct s_config
 {
 	int		num_collectibles;
+	t_collectibles	*collectibles;
 	t_size	tile_size;
 	t_coor	start_pos;
 	t_coor	exit_pos;

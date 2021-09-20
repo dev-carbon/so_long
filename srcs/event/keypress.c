@@ -24,7 +24,7 @@ int	keypress(int key, t_data *data)
 		data->player->walk_dir.x = -1;
 	else if (key == KEY_ESC)
 		close_game("bye!\n", EXIT_SUCCESS, data);
-	move_player(data);
+	so_long(key, data);
 	refresh(data);
 	return (0);
 }

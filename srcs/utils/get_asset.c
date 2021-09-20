@@ -1,24 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   validate.h                                         :+:      :+:    :+:   */
+/*   get_asset.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: humanfou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/04 11:16:06 by humanfou          #+#    #+#             */
-/*   Updated: 2021/09/04 11:16:08 by humanfou         ###   ########.fr       */
+/*   Created: 2021/09/09 18:47:39 by humanfou          #+#    #+#             */
+/*   Updated: 2021/09/09 18:47:53 by humanfou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef VALIDATE_H
-# define VALIDATE_H
+#include "utils.h"
 
-# include "so_long.h"
-
-int	is_valid_args(const int ac, const char **av);
-int	is_valid_file_extension(const char *filename, const char *ext);
-int	is_valid_map(int x, int y, int **grid, t_map map);
-int	is_valid_rows(t_data *data);
-int is_valid_key(int key);
-
-#endif
+t_asset	get_asset(t_coor pos, t_map map, t_data data)
+{
+	if (is_wall(pos, map, data.config->tile_size))
+		return (data.assets[ASSET_WALL]);
+	return (data.assets[ASSET_SPACE]);
+}

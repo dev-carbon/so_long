@@ -28,18 +28,18 @@ static t_asset	*load_asset(t_window win, t_asset *asset)
 t_data	*set_assets(t_data *data)
 {
 	data->assets[ASSET_WALL].path = "./assets/wall.xpm";
-	data->assets[ASSET_SPACE].path = "./assets/water.xpm";
-	data->assets[ASSET_COLLECTIBLE].path = "./assets/fish.xpm";
-	data->assets[ASSET_PLAYER].path = "./assets/dolphin.xpm";
+	data->assets[ASSET_SPACE].path = "./assets/space.xpm";
+	data->assets[ASSET_COLLECTIBLE].path = "./assets/collectible.xpm";
+	data->assets[ASSET_PLAYER].path = "./assets/player.xpm";
 	data->assets[ASSET_EXIT].path = "./assets/exit.xpm";
 	if (!(load_asset(*data->window, &data->assets[ASSET_WALL])))
 		close_game("Unable to load asset wall.\n", EXIT_FAILURE, data);
 	if (!(load_asset(*data->window, &data->assets[ASSET_SPACE])))
-		close_game("Unable to load asset water.\n", EXIT_FAILURE, data);
+		close_game("Unable to load asset space.\n", EXIT_FAILURE, data);
 	if (!(load_asset(*data->window, &data->assets[ASSET_COLLECTIBLE])))
-		close_game("Unable to load asset fish.\n", EXIT_FAILURE, data);
+		close_game("Unable to load asset collectible.\n", EXIT_FAILURE, data);
 	if (!(load_asset(*data->window, &data->assets[ASSET_PLAYER])))
-		close_game("Unable to load asset dolphin.\n", EXIT_FAILURE, data);
+		close_game("Unable to load asset player.\n", EXIT_FAILURE, data);
 	if (!(load_asset(*data->window, &data->assets[ASSET_EXIT])))
 		close_game("Unable to load asset exit.\n", EXIT_FAILURE, data);
 	return (data);

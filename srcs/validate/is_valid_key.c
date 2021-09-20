@@ -1,24 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   validate.h                                         :+:      :+:    :+:   */
+/*   is_valid_key.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: humanfou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/04 11:16:06 by humanfou          #+#    #+#             */
-/*   Updated: 2021/09/04 11:16:08 by humanfou         ###   ########.fr       */
+/*   Created: 2021/09/20 16:08:56 by humanfou          #+#    #+#             */
+/*   Updated: 2021/09/20 16:09:08 by humanfou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef VALIDATE_H
-# define VALIDATE_H
+#include "validate.h"
 
-# include "so_long.h"
-
-int	is_valid_args(const int ac, const char **av);
-int	is_valid_file_extension(const char *filename, const char *ext);
-int	is_valid_map(int x, int y, int **grid, t_map map);
-int	is_valid_rows(t_data *data);
-int is_valid_key(int key);
-
-#endif
+int is_valid_key(int key)
+{
+    if (key == KEY_Z || key == KEY_D || key == KEY_S || key == KEY_Q)
+        return (1);
+    return (0);
+}

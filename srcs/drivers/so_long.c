@@ -1,24 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   validate.h                                         :+:      :+:    :+:   */
+/*   engine.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: humanfou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/04 11:16:06 by humanfou          #+#    #+#             */
-/*   Updated: 2021/09/04 11:16:08 by humanfou         ###   ########.fr       */
+/*   Created: 2021/09/20 16:03:45 by humanfou          #+#    #+#             */
+/*   Updated: 2021/09/20 16:03:46 by humanfou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef VALIDATE_H
-# define VALIDATE_H
+#include "drivers.h"
 
-# include "so_long.h"
+t_data	*so_long(int key, t_data *data)
+{
+	t_coor	pos;
 
-int	is_valid_args(const int ac, const char **av);
-int	is_valid_file_extension(const char *filename, const char *ext);
-int	is_valid_map(int x, int y, int **grid, t_map map);
-int	is_valid_rows(t_data *data);
-int is_valid_key(int key);
-
-#endif
+	pos = data->player->pos;
+	pos.x += data->player->walk_dir.x;
+	pos.y += data->player->walk_dir.y;
+	move(key, pos, data);
+	collect(pos, data);
+	if (data->map->matrix[pos.y][pos.x] == MAP_EXIT
+		&& data->config->num_collectibles == 0)
+		escape(pos, data);
+	return (data);
+}

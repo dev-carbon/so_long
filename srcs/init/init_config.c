@@ -21,5 +21,6 @@ t_data	*init_config(t_data *data)
 	data->config->start_pos.y = -1;
 	data->config->exit_pos.x = -1;
 	data->config->exit_pos.y = -1;
+	data->config->collectibles = NULL;
 	return (data);
 }

@@ -74,7 +74,7 @@ int	close_game(char *message, int status, t_data *data)
 	write_message(message, status);
 	if (data != NULL)
 	{
-		printf("player collected: %d collectible(s)\n", data->player->collected);
+		printf("Collected items: %d collectible(s)\n", data->player->collected);
 		destroy_rows(data->rows);
 		destroy_map(data->map);
 		destroy_window(data->window);
