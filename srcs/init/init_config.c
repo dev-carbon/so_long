@@ -1,24 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   drivers.h                                          :+:      :+:    :+:   */
+/*   init_config.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: humanfou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/18 04:16:31 by humanfou          #+#    #+#             */
-/*   Updated: 2021/09/18 04:16:32 by humanfou         ###   ########.fr       */
+/*   Created: 2021/09/20 14:57:37 by humanfou          #+#    #+#             */
+/*   Updated: 2021/09/20 14:57:39 by humanfou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DRIVERS_H
-# define DRIVERS_H
+#include "init.h"
 
-# include "so_long.h"
-
-t_data  *initialize(t_data *data);
-t_data	*parse(const char *filename, t_data *data);
-t_data	*setup(t_data *data);
-void	start(t_data *data);
-void	refresh(t_data *data);
-
-#endif
+t_data	*init_config(t_data *data)
+{
+	data->config->num_collectibles = 0;
+	data->config->tile_size.width = TILE_SIZE;
+	data->config->tile_size.height = TILE_SIZE;
+	data->config->start_pos.x = -1;
+	data->config->start_pos.y = -1;
+	data->config->exit_pos.x = -1;
+	data->config->exit_pos.y = -1;
+	return (data);
+}

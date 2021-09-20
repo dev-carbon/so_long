@@ -1,24 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   drivers.h                                          :+:      :+:    :+:   */
+/*   init_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: humanfou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/18 04:16:31 by humanfou          #+#    #+#             */
-/*   Updated: 2021/09/18 04:16:32 by humanfou         ###   ########.fr       */
+/*   Created: 2021/09/20 14:57:50 by humanfou          #+#    #+#             */
+/*   Updated: 2021/09/20 14:57:52 by humanfou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DRIVERS_H
-# define DRIVERS_H
+#include "init.h"
 
-# include "so_long.h"
-
-t_data  *initialize(t_data *data);
-t_data	*parse(const char *filename, t_data *data);
-t_data	*setup(t_data *data);
-void	start(t_data *data);
-void	refresh(t_data *data);
-
-#endif
+t_data	*init_player(t_data *data)
+{
+	data->player->walk_dir.x = 0;
+	data->player->walk_dir.y = 0;
+	data->player->move = 0;
+	data->player->collected = 0;
+	return (data);
+}

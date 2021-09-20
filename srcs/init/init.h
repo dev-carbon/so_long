@@ -15,6 +15,8 @@
 
 # include "so_long.h"
 
-t_data	*init(t_data *data);
+t_data	*init_memory(t_data *data);
+t_data	*init_config(t_data *data);
+t_data	*init_player(t_data *data);
 
 #endif
