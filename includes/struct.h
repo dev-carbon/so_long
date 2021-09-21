@@ -78,11 +78,11 @@ typedef struct s_asset
 
 typedef struct s_config
 {
-	int		num_collectibles;
+	int				num_collectibles;
 	t_collectibles	*collectibles;
-	t_size	tile_size;
-	t_coor	start_pos;
-	t_coor	exit_pos;
+	t_size			tile_size;
+	t_coor			start_pos;
+	t_coor			exit_pos;
 }	t_config;
 
 typedef struct s_data
@@ -95,7 +95,7 @@ typedef struct s_data
 	t_window	*window;
 	t_map		*map;
 	t_player	*player;
-	t_asset	assets[5];
+	t_asset		assets[5];
 }	t_data;
 
 #endif
