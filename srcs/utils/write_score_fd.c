@@ -1,24 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.h                                             :+:      :+:    :+:   */
+/*   write_score_fd.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: humanfou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/09 19:36:33 by humanfou          #+#    #+#             */
-/*   Updated: 2021/09/09 19:36:35 by humanfou         ###   ########.fr       */
+/*   Created: 2021/09/21 15:01:16 by humanfou          #+#    #+#             */
+/*   Updated: 2021/09/21 15:01:19 by humanfou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef INIT_H
-# define INIT_H
+#include "utils.h"
 
-# include "so_long.h"
-
-t_data	*init_data(t_data *data);
-t_data	*init_config(t_data *data);
-t_data  *init_map(t_data *data);
-t_data  *init_window(t_data *data);
-t_data	*init_player(t_data *data);
-
-#endif
+void	write_score_fd(int items, int moves, int fd)
+{
+	ft_putstr_fd("items items: ", fd);
+	ft_putnbr_fd(items, fd);
+	ft_putchar_fd('\n', fd);;
+	ft_putstr_fd("Total move: ", fd);
+	ft_putnbr_fd(moves, fd);
+	ft_putchar_fd('\n', fd);
+}

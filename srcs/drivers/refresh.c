@@ -12,7 +12,7 @@
 
 #include "so_long.h"
 
-void	refresh(t_data *data)
+int	refresh(t_data *data)
 {
 	mlx_destroy_image(data->window->mlx_ptr, data->window->img.ptr);
 	data->window->img.ptr = mlx_new_image(data->window->mlx_ptr,
@@ -23,4 +23,5 @@ void	refresh(t_data *data)
 	render_world2d(*data->window, *data->map, *data);
 	mlx_put_image_to_window(data->window->mlx_ptr, data->window->mlx_win,
 		data->window->img.ptr, 0, 0);
+	return (0);
 }

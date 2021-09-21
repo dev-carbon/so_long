@@ -19,9 +19,9 @@ static	t_data	*add_collectible(t_coor pos, t_data *data)
 
 	new = (t_collectibles *)malloc(sizeof(t_collectibles));
 	if (!new)
-		close_game("Unable to allocate enougth memory for collectible", 1, data);
+		quit("Unable to allocate enougth memory for collectible", 1, data);
 	new->pos = pos;
-	new->is_items = 0;
+	new->is_collected = 0;
 	new->next = NULL;
 	if (data->config->collectibles == NULL)
 		data->config->collectibles = new;
@@ -36,13 +36,41 @@ static	t_data	*add_collectible(t_coor pos, t_data *data)
 	return (data);
 }
 
+static t_data	*add_exit(t_coor pos, t_data *data)
+{
+	t_exit	*new;
+	t_exit	*last;
+
+	new = (t_exit *)malloc(sizeof(t_exit));
+	if (!new)
+		quit("Unable to allocate memory for exit", 1, data);
+	new->pos = pos;
+	new->next = NULL;
+	if (data->config->exits == NULL)
+		data->config->exits = new;
+	else
+	{
+		last = data->config->exits;
+		while (last->next != NULL)
+			last = last->next;
+		last->next = new;
+	}
+	data->config->num_exits += 1;
+	return (data);
+}
+
 t_data	*set_config(t_data *data, char c, t_coor pos)
 {
+	if (data->config == NULL)
+		init_config(data);
 	if (c == 'C')
 		add_collectible(pos, data);
 	else if (c == 'P')
+	{
 		data->config->start_pos = pos;
+		data->config->num_players += 1;
+	}
 	else if (c == 'E')
-		data->config->exit_pos = pos;
+		add_exit(pos, data);
 	return (data);
 }

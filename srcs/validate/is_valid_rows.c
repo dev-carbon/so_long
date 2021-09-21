@@ -18,6 +18,8 @@ int	is_valid_rows(t_data *data)
 	t_rows	*buff;
 
 	buff = data->rows;
+	if (!buff)
+		return (0);
 	pos.y = -1;
 	while (buff != NULL)
 	{
@@ -28,10 +30,10 @@ int	is_valid_rows(t_data *data)
 			if (buff->line[pos.x] != '0' && buff->line[pos.x] != '1'
 				&& buff->line[pos.x] != 'P' && buff->line[pos.x] != 'C'
 				&& buff->line[pos.x] != 'E')
-				close_game("Bad map character.\n", EXIT_FAILURE, data);
+				quit("Bad map character.\n", EXIT_FAILURE, data);
 		}
 		if (buff->next != NULL && buff->len != buff->next->len)
-			close_game("The map is not rectangular.\n", EXIT_FAILURE, data);
+			quit("The map is not rectangular.\n", EXIT_FAILURE, data);
 		buff = buff->next;
 	}
 	return (1);

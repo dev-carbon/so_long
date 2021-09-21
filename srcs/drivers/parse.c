@@ -19,7 +19,7 @@ static t_rows	*add_rows(char *line, t_data *data)
 
 	new = (t_rows *)malloc(sizeof(t_rows));
 	if (new == NULL)
-		close_game("Unable to allocate enougth memory\n", 1, data);
+		quit("Unable to allocate enougth memory\n", 1, data);
 	new->line = ft_strdup(line);
 	new->len = ft_strlen(line);
 	new->next = NULL;
@@ -53,28 +53,38 @@ static t_data	*get_map_elements(t_data *data)
 	return (data);
 }
 
+static int	check_errors(t_data *data)
+{
+	if (data->config->start_pos.x == -1 && data->config->start_pos.y == -1)
+		quit("There is no player in the map.\n", 1, data);
+	if (data->config->num_players > 1)
+		quit("Multiple start positions.\n", 1, data);
+	if (data->config->num_exits == 0)
+		quit("There is no exit in the map.\n", 1, data);
+	if (data->config->num_collectibles == 0)
+		quit("There is no collectibles in the map.\n", 1, data);
+	return (0);
+}
+
 t_data	*parse(const char *filename, t_data *data)
 {
 	data->fd = open(filename, O_RDONLY);
 	if (data->fd == -1)
-		close_game("Unable to open map file.\n", EXIT_FAILURE, data);
+		quit("Unable to open map file.\n", EXIT_FAILURE, data);
 	while (1)
 	{
 		data->ret = get_next_line(data->fd, &data->line);
+		if (data->ret == -1)
+			break ;
 		add_rows(data->line, data);
 		free(data->line);
-		if (data->ret == -1 || data->ret == 0)
+		if (data->ret == 0)
 			break ;
 	}
+	if (data->rows == NULL)
+		quit("Please check map file.\n", EXIT_FAILURE, data);
 	if (is_valid_rows(data))
-		;
-	get_map_elements(data);
-	if (data->config->start_pos.x == -1 && data->config->start_pos.y == -1)
-		close_game("There is no player in the map.\n", EXIT_FAILURE, data);
-	if (data->config->exit_pos.x == -1 && data->config->exit_pos.y == -1)
-		close_game("There is no exit in the map.\n", EXIT_FAILURE, data);
-	if (data->config->num_collectibles == 0)
-		close_game("There is no collectibles in the map.\n",
-			EXIT_FAILURE, data);
+		get_map_elements(data);
+	check_errors(data);
 	return (data);
 }

@@ -14,6 +14,8 @@
 
 t_data	*set_window(t_data *data)
 {
+	if (data->window == NULL)
+		init_window(data);
 	data->window->mlx_ptr = mlx_init();
 	data->window->size.width = data->map->size.width
 		* data->config->tile_size.width;

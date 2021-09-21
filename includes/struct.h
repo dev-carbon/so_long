@@ -34,7 +34,7 @@ typedef struct s_rows
 
 typedef struct s_collectibles
 {
-	int						is_items;
+	int						is_collected;
 	t_coor					pos;
 	struct s_collectibles	*next;
 }	t_collectibles;
@@ -76,13 +76,21 @@ typedef struct s_asset
 	t_image	img;
 }	t_asset;
 
+typedef struct s_exit
+{
+	t_coor	pos;
+	struct s_exit	*next;
+}	t_exit;
+
 typedef struct s_config
 {
+	int				num_exits;
+	int				num_players;
 	int				num_collectibles;
 	t_collectibles	*collectibles;
+	t_exit			*exits;
 	t_size			tile_size;
 	t_coor			start_pos;
-	t_coor			exit_pos;
 }	t_config;
 
 typedef struct s_data

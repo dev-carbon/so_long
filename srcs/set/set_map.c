@@ -12,6 +12,20 @@
 
 #include "set.h"
 
+static void	set_map_size(t_data *data)
+{
+	t_rows	*buff;
+	
+	buff = data->rows;
+	data->map->size.width = data->rows->len;
+	data->map->size.height = 0;
+	while (buff)
+	{
+		data->map->size.height += 1;
+		buff = buff->next;
+	}
+}
+
 static t_data	*fill_matrix(t_data *data)
 {
 	t_coor	p;
@@ -44,26 +58,20 @@ static t_data	*fill_matrix(t_data *data)
 t_data	*set_map(t_data *data)
 {
 	int		y;
-	t_rows	*buff;
 
-	buff = data->rows;
-	data->map->size.width = data->rows->len;
-	data->map->size.height = 0;
-	while (buff)
-	{
-		data->map->size.height += 1;
-		buff = buff->next;
-	}
+	if (data->map == NULL)
+		init_map(data);
+	set_map_size(data);
 	data->map->matrix = (int **)malloc(sizeof(int *) * data->map->size.height);
 	if (data->map->matrix == NULL)
-		close_game("Unable to allocate sufficient memory for map\n", 1, data);
+		quit("Unable to allocate sufficient memory for map\n", 1, data);
 	y = -1;
 	while (++y < data->map->size.height)
 	{
 		*(data->map->matrix + y) = (int *)malloc(sizeof(int)
 				* data->map->size.width);
 		if (*(data->map->matrix + y) == NULL)
-			close_game("Unable to allocate enougth memory for map\n", 1, data);
+			quit("Unable to allocate enougth memory for map\n", 1, data);
 	}
 	fill_matrix(data);
 	return (data);

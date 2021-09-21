@@ -18,7 +18,7 @@ int	main(const int argc, const char *argv[])
 
 	if (is_valid_args(argc, argv))
 	{
-		data = initialize(data);
+		data = init_data(data);
 		parse(argv[1], data);
 		setup(data);
 		start(data);

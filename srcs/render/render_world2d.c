@@ -34,32 +34,37 @@ static void	render_map(t_window win, t_map map, t_data data)
 	}
 }
 
-static void render_exit(t_window win, t_coor epos, t_data data)
+static void render_exits(t_window win, t_exit *exits, t_data data)
 {
-	int			color;
-	t_coor		pos;
-	t_coor		texel;
-	t_coor		start;
-	t_asset		asset;
+	t_coor			texel;
+	t_coor			pos;
+	t_coor			start;
+	t_exit			*buff;
+	t_asset			asset;
+	int				color;
 
-	pos.x = epos.x * data.config->tile_size.width;
-	pos.y = epos.y * data.config->tile_size.height;
-	start = pos;
+	buff = exits;
 	asset = data.assets[ASSET_EXIT];
-	while (pos.y < start.y + data.config->tile_size.height)
+	while (buff != NULL)
 	{
-		pos.x = start.x;
-		while (pos.x < start.x + data.config->tile_size.width)
+		pos.x = buff->pos.x * data.config->tile_size.width;
+		pos.y = buff->pos.y * data.config->tile_size.height;
+		start = pos;
+		while (pos.y < start.y + data.config->tile_size.height)
 		{
-			texel = get_texel(pos, asset.size, data.config->tile_size);
-			color = asset.img.data[(asset.size.width * texel.y) + texel.x];
-			if (color != 0x3D253B && color != 0x362030
-				&& color != 0x927A5D)
-				win.img.data[(win.size.width * pos.y) + pos.x]
-					= color;
-			pos.x++;
+			pos.x = start.x;
+			while (pos.x < start.x + data.config->tile_size.width)
+			{
+				texel = get_texel(pos, asset.size, data.config->tile_size);
+				color = asset.img.data[(asset.size.width * texel.y) + texel.x];
+				if (color != 0x3D253B && color != 0x362030)
+					win.img.data[(win.size.width * pos.y) + pos.x]
+						= color;
+				pos.x++;
+			}
+			pos.y++;
 		}
-		pos.y++;
+		buff = buff->next;
 	}
 }
 
@@ -81,7 +86,7 @@ static void	render_collectibles(t_window win, t_collectibles *c, t_data data)
 		start = pos;
 		while (pos.y < start.y + data.config->tile_size.height)
 		{
-			if (!buff->is_items)
+			if (!buff->is_collected)
 			{
 				pos.x = start.x;
 				while (pos.x < start.x + data.config->tile_size.width)
@@ -132,6 +137,6 @@ void	render_world2d(t_window win, t_map map, t_data data)
 {
 	render_map(win, map, data);
 	render_collectibles(win, data.config->collectibles, data);
-	render_exit(win, data.config->exit_pos, data);
+	render_exits(win, data.config->exits, data);
 	render_player(win, *data.player, data);
 }

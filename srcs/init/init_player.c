@@ -14,6 +14,9 @@
 
 t_data	*init_player(t_data *data)
 {
+	data->player = (t_player *)malloc(sizeof(t_player));
+	if (data->player == NULL)
+		quit("Unable to init player\n", EXIT_FAILURE, data);
 	data->player->walk_dir.x = 0;
 	data->player->walk_dir.y = 0;
 	data->player->moves = 0;

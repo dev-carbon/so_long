@@ -14,6 +14,8 @@
 
 t_data	*set_player(t_data *data)
 {
+	if (data->player == NULL)
+		init_player(data);
 	data->player->pos = data->config->start_pos;
 	return (data);
 }

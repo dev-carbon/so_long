@@ -1,24 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.h                                             :+:      :+:    :+:   */
+/*   destroy_window.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: humanfou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/09 19:36:33 by humanfou          #+#    #+#             */
-/*   Updated: 2021/09/09 19:36:35 by humanfou         ###   ########.fr       */
+/*   Created: 2021/09/21 16:19:51 by humanfou          #+#    #+#             */
+/*   Updated: 2021/09/21 16:19:52 by humanfou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef INIT_H
-# define INIT_H
+#include "utils.h"
 
-# include "so_long.h"
-
-t_data	*init_data(t_data *data);
-t_data	*init_config(t_data *data);
-t_data  *init_map(t_data *data);
-t_data  *init_window(t_data *data);
-t_data	*init_player(t_data *data);
-
-#endif
+void	destroy_window(t_window *window)
+{
+	if (window != NULL)
+	{
+		mlx_destroy_image(window->mlx_ptr, window->img.ptr);
+		mlx_destroy_window(window->mlx_ptr, window->mlx_win);
+		free(window);
+		window = NULL;
+	}
+}

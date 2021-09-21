@@ -15,8 +15,8 @@
 int	is_valid_args(const int ac, const char **av)
 {
 	if (ac != 2)
-		close_game("Invalid number of arguments.\n", EXIT_FAILURE, NULL);
+		quit("Invalid number of arguments.\n", EXIT_FAILURE, NULL);
 	else if (!is_valid_file_extension(av[1], ".ber"))
-		close_game("Invalid file extension.\n", EXIT_FAILURE, NULL);
+		quit("Invalid file extension.\n", EXIT_FAILURE, NULL);
 	return (1);
 }

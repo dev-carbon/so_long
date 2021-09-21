@@ -22,8 +22,6 @@ void	display_data(t_data *data)
 		data->window->size.height);
 	printf("\n\n*** CURRENT POSITIONS ***\n");
 	printf("player: x = %d; y = %d\n", data->player->pos.x, data->player->pos.y);
-	printf("exit: x = %d; y = %d\n", data->config->exit_pos.x,
-		data->config->exit_pos.y);
 	printf("\n\n*** COLLECTIBLES ***\n");
 	printf("num collectiblex: %d\n", data->config->num_collectibles);
 	printf("\n\n*** SIZES ***\n");

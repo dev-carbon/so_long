@@ -12,23 +12,15 @@
 
 #include "init.h"
 
-t_data	*init_memory(t_data *data)
+t_data	*init_data(t_data *data)
 {
 	data = (t_data *)malloc(sizeof(t_data));
 	if (data == NULL)
-		close_game("Unable to allocate sufficient memory\n", 1, NULL);
-	data->window = (t_window *)malloc(sizeof(t_window));
-	if (data->window == NULL)
-		close_game("Unable to allocate sufficient memory\n", 1, data);
-	data->map = (t_map *)malloc(sizeof(t_map));
-	if (data->map == NULL)
-		close_game("Unable to allocate sufficient memory\n", 1, data);
-	data->player = (t_player *)malloc(sizeof(t_player));
-	if (data->player == NULL)
-		close_game("Unable to allocate sufficient memory\n", 1, data);
-	data->config = (t_config *)malloc(sizeof(t_config));
-	if (data->config == NULL)
-		close_game("Unable to allocate sufficient memory\n", 1, data);
+		quit("Unable to init data\n", 1, NULL);
+	data->map = NULL;
+	data->config = NULL;
+	data->window = NULL;
+	data->player = NULL;
 	data->rows = NULL;
 	return (data);
 }

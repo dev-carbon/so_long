@@ -1,21 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   initialize.c                                       :+:      :+:    :+:   */
+/*   display_rows.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: humanfou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/20 14:54:24 by humanfou          #+#    #+#             */
-/*   Updated: 2021/09/20 15:03:49 by humanfou         ###   ########.fr       */
+/*   Created: 2021/09/21 16:01:21 by humanfou          #+#    #+#             */
+/*   Updated: 2021/09/21 16:02:15 by humanfou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "drivers.h"
+#include "utils.h"
 
-t_data  *initialize(t_data *data)
+void	display_rows(t_rows *rows)
 {
-    data = init_memory(data);
-	init_config(data);
-	init_player(data);
-    return (data);
+	t_rows	*buff;
+
+	buff = rows;
+	while (buff != NULL)
+	{
+		printf("line => %s\n", buff->line);
+		buff = buff->next;
+	}
 }

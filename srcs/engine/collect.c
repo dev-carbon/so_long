@@ -21,7 +21,7 @@ static t_data	*set_items(t_coor pos, t_data *data)
 	{
 		if (buff->pos.x == pos.x && buff->pos.y == pos.y)
 		{
-			buff->is_items = 1;
+			buff->is_collected = 1;
 			break ;
 		}
 		buff = buff->next;

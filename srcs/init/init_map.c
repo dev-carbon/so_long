@@ -1,24 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.h                                             :+:      :+:    :+:   */
+/*   init_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: humanfou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/09 19:36:33 by humanfou          #+#    #+#             */
-/*   Updated: 2021/09/09 19:36:35 by humanfou         ###   ########.fr       */
+/*   Created: 2021/09/21 16:41:23 by humanfou          #+#    #+#             */
+/*   Updated: 2021/09/21 16:41:24 by humanfou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef INIT_H
-# define INIT_H
+#include "init.h"
 
-# include "so_long.h"
-
-t_data	*init_data(t_data *data);
-t_data	*init_config(t_data *data);
-t_data  *init_map(t_data *data);
-t_data  *init_window(t_data *data);
-t_data	*init_player(t_data *data);
-
-#endif
+t_data  *init_map(t_data *data)
+{
+    data->map = (t_map *)malloc(sizeof(t_map));
+    if (data->map == NULL)
+        quit("Unable to init map\n", EXIT_FAILURE, data);
+    return (data);
+}
