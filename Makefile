@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-# SANITIZE = -g3 -fsanitize=address -fno-omit-frame-pointer
+SANITIZE = -g3 -fsanitize=address -fno-omit-frame-pointer
 
 NAME = so_long
 
@@ -51,7 +51,7 @@ all: $(NAME)
 $(NAME): $(OBJS)
 	@$(MAKE) -C mlx
 	@$(MAKE) -C libft
-	$(CC) $(SANITIZE) -o $(NAME) $(OBJS) $(INC) $(LIBS_DIR) $(LIBS)
+	$(CC) $(CFLAGS)  $(SANITIZE) -o $(NAME) $(OBJS) $(INC) $(LIBS_DIR) $(LIBS)
 
 clean:
 	@cd libft && $(MAKE) clean
