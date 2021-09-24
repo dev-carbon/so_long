@@ -14,7 +14,7 @@
 
 size_t	ft_charlen(wchar_t c)
 {
-	int len;
+	int	len;
 
 	if (c < 128)
 		len = 1;

@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-static int	count_word(char const *s, char c)
+static int	count_words(char const *s, char c)
 {
 	int	i;
 	int	len;
@@ -21,7 +21,7 @@ static int	count_word(char const *s, char c)
 
 	i = 0;
 	nb = 0;
-	len = ft_strlen((char*)s);
+	len = ft_strlen((char *)s);
 	while (i < len && s[i] != '\0')
 	{
 		is_word = 0;
@@ -46,30 +46,48 @@ static int	word_len(char const *s, char c)
 	return (word_len);
 }
 
-char		**ft_split(char const *s, char c)
+static char	**init_tab(int nbwords)
 {
-	char	*str;
 	char	**tab;
-	int		i;
-	int		k;
 
-	if (!(tab = (char **)malloc(sizeof(char *) * (count_word(s, c) + 1))))
+	tab = (char **)malloc(sizeof(char *) * (nbwords + 1));
+	if (!tab)
 		return (NULL);
-	str = (char *)s;
+	return (tab);
+}
+
+static char	*init_word(int wordlen)
+{
+	char	*word;
+
+	word = (char *)malloc(sizeof(char) * (wordlen + 1));
+	if (!word)
+		return (NULL);
+	return (word);
+}
+
+char	**ft_split(char const *s, char c)
+{
+	int		i;
+	int		j;
+	int		k;
+	char	**tab;
+
+	tab = init_tab(count_words(s, c));
+	j = 0;
 	k = 0;
-	while (*str != 0)
+	while (*(s + j) != 0)
 	{
-		if (*str != c && *str != 0)
+		if (*(s + j) != c && *(s + j) != 0)
 		{
-			if (!(tab[k] = (char*)malloc(sizeof(char) * word_len(str, c) + 1)))
-				return (NULL);
+			tab[k] = init_word(word_len(s, c));
 			i = 0;
-			while (*str != c && *str != 0)
-				tab[k][i++] = *str++;
+			while (*(s + j) != c && *(s + j) != 0)
+				tab[k][i++] = *(s + j++);
 			tab[k++][i] = 0;
 		}
-		str += (*str == 0) ? -1 : 0;
-		str++;
+		if (*(s + j++) == '\0')
+			j -= 1;
 	}
 	tab[k] = NULL;
 	return (tab);

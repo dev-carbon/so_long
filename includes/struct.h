@@ -37,7 +37,7 @@ typedef struct s_collectibles
 	int						is_collected;
 	t_coor					pos;
 	struct s_collectibles	*next;
-}	t_collectibles;
+}	t_collectible;
 
 typedef struct s_map {
 	t_size	size;
@@ -78,7 +78,7 @@ typedef struct s_asset
 
 typedef struct s_exit
 {
-	t_coor	pos;
+	t_coor			pos;
 	struct s_exit	*next;
 }	t_exit;
 
@@ -87,7 +87,7 @@ typedef struct s_config
 	int				num_exits;
 	int				num_players;
 	int				num_collectibles;
-	t_collectibles	*collectibles;
+	t_collectible	*collectibles;
 	t_exit			*exits;
 	t_size			tile_size;
 	t_coor			start_pos;

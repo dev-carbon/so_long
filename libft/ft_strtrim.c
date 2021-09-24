@@ -28,7 +28,7 @@ static int	check_set(char c, char const *set)
 	return (0);
 }
 
-char		*ft_strtrim(char const *s1, char const *set)
+char	*ft_strtrim(char const *s1, char const *set)
 {
 	char			*start;
 	char			*end;
@@ -47,7 +47,8 @@ char		*ft_strtrim(char const *s1, char const *set)
 	while (check_set(*end, set))
 		end--;
 	len = end - start + 1;
-	if (!(ret = (char *)malloc(sizeof(char) * (len + 1))))
+	ret = (char *)malloc(sizeof(char) * (len + 1));
+	if (!ret)
 		return (0);
 	i = 0;
 	while (len-- > 0)

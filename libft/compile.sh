@@ -1,4 +1,5 @@
 #!/bin/bash
 
-make
-clang -Wall -Wextra -Werror main.c libft.a
+make re
+clang -Wall -Wextra -Werror -g main.c libft.a
+

@@ -12,8 +12,8 @@
 
 #include "engine.h"
 
-void    escape(t_coor pos, t_data *data)
+void	escape(t_coor pos, t_data *data)
 {
-    data->map->matrix[pos.y][pos.x] = MAP_SPACE;
+	data->map->matrix[pos.y][pos.x] = MAP_SPACE;
 	quit("player exited map\n", EXIT_SUCCESS, data);
 }

@@ -14,9 +14,9 @@
 
 void	write_score_fd(int items, int moves, int fd)
 {
-	ft_putstr_fd("items items: ", fd);
+	ft_putstr_fd("items: ", fd);
 	ft_putnbr_fd(items, fd);
-	ft_putchar_fd('\n', fd);;
+	ft_putchar_fd('\n', fd);
 	ft_putstr_fd("Total move: ", fd);
 	ft_putnbr_fd(moves, fd);
 	ft_putchar_fd('\n', fd);

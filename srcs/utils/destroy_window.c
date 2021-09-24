@@ -18,6 +18,7 @@ void	destroy_window(t_window *window)
 	{
 		mlx_destroy_image(window->mlx_ptr, window->img.ptr);
 		mlx_destroy_window(window->mlx_ptr, window->mlx_win);
+		free(window->mlx_ptr);
 		free(window);
 		window = NULL;
 	}

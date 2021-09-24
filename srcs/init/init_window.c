@@ -12,10 +12,10 @@
 
 #include "init.h"
 
-t_data  *init_window(t_data *data)
+t_data	*init_window(t_data *data)
 {
-    data->window = (t_window *)malloc(sizeof(t_window));
+	data->window = (t_window *)malloc(sizeof(t_window));
 	if (data->window == NULL)
 		quit("Unable to init window\n", EXIT_FAILURE, data);
-    return (data);
+	return (data);
 }

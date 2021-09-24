@@ -12,6 +12,20 @@
 
 #include "libft.h"
 
+static uintmax_t	secure_number(intmax_t nbr)
+{
+	if (nbr < 0)
+		return (-1 * nbr);
+	return (nbr);
+}
+
+static int	get_number_lenght(uintmax_t unbr, intmax_t nbr)
+{
+	if (nbr < 0)
+		return (ft_nbrlen(unbr) + 1);
+	return (ft_nbrlen(unbr));
+}
+
 char	*ft_itoa(intmax_t nbr)
 {
 	uintmax_t	unbr;
@@ -19,9 +33,10 @@ char	*ft_itoa(intmax_t nbr)
 	int			i;
 	char		*res;
 
-	unbr = (nbr < 0) ? -nbr : nbr;
-	number_length = (nbr < 0) ? ft_nbrlen(unbr) + 1 : ft_nbrlen(unbr);
-	if (!(res = (char *)malloc(sizeof(char) * (number_length + 1))))
+	unbr = secure_number(nbr);
+	number_length = get_number_lenght(unbr, nbr);
+	res = (char *)malloc(sizeof(char) * (number_length + 1));
+	if (!res)
 		return (NULL);
 	i = -1;
 	while (unbr > 0)
@@ -32,6 +47,5 @@ char	*ft_itoa(intmax_t nbr)
 	if (nbr < 0)
 		res[++i] = '-';
 	res[++i] = '\0';
-	ft_strrev(res);
-	return (res);
+	return (ft_strrev(res));
 }

@@ -14,7 +14,7 @@
 
 static t_data	*set_items(t_coor pos, t_data *data)
 {
-	t_collectibles	*buff;
+	t_collectible	*buff;
 
 	buff = data->config->collectibles;
 	while (buff != NULL)

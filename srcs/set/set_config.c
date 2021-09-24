@@ -14,10 +14,10 @@
 
 static	t_data	*add_collectible(t_coor pos, t_data *data)
 {
-	t_collectibles	*new;
-	t_collectibles	*last;
+	t_collectible	*new;
+	t_collectible	*last;
 
-	new = (t_collectibles *)malloc(sizeof(t_collectibles));
+	new = (t_collectible *)malloc(sizeof(t_collectible));
 	if (!new)
 		quit("Unable to allocate enougth memory for collectible", 1, data);
 	new->pos = pos;

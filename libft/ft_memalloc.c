@@ -14,7 +14,7 @@
 
 char	*ft_memalloc(size_t size)
 {
-	char *start;
+	char	*start;
 
 	start = malloc(size);
 	if (!start)

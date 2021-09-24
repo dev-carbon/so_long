@@ -15,7 +15,7 @@
 static void	set_map_size(t_data *data)
 {
 	t_rows	*buff;
-	
+
 	buff = data->rows;
 	data->map->size.width = data->rows->len;
 	data->map->size.height = 0;

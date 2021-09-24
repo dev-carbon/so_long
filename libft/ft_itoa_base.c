@@ -17,7 +17,10 @@ char	*generate_string(char *str, char *mask, intmax_t value, int base)
 	uintmax_t	unbr;
 	int			i;
 
-	unbr = (value < 0) ? -value : value;
+	if (value < 0)
+		unbr = -value;
+	else
+		unbr = value;
 	i = -1;
 	if (unbr == 0)
 		str[++i] = mask[0];
@@ -41,8 +44,12 @@ char	*ft_itoa_base(intmax_t value, int base, char case_type)
 	char		*res;
 	int			number_length;
 
-	number_length = (value < 0) ? ft_nbrlen(value) + 1 : ft_nbrlen(value);
-	if (!(res = (char *)malloc(sizeof(char) * (number_length + 1))))
+	if (value < 0)
+		number_length = ft_nbrlen(value) + 1;
+	else
+		number_length = ft_nbrlen(value);
+	res = (char *)malloc(sizeof(char) * (number_length + 1));
+	if (!res)
 		return (NULL);
 	if (case_type == 'X')
 		generate_string(res, "0123456789ABCDEF", value, base);

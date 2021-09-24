@@ -12,9 +12,9 @@
 
 #include "validate.h"
 
-int is_valid_key(int key)
+int	is_valid_key(int key)
 {
-    if (key == KEY_Z || key == KEY_D || key == KEY_S || key == KEY_Q)
-        return (1);
-    return (0);
+	if (key == KEY_Z || key == KEY_D || key == KEY_S || key == KEY_Q)
+		return (1);
+	return (0);
 }

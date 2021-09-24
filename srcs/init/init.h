@@ -17,8 +17,8 @@
 
 t_data	*init_data(t_data *data);
 t_data	*init_config(t_data *data);
-t_data  *init_map(t_data *data);
-t_data  *init_window(t_data *data);
+t_data	*init_map(t_data *data);
+t_data	*init_window(t_data *data);
 t_data	*init_player(t_data *data);
 
 #endif

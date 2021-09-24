@@ -15,9 +15,9 @@
 
 # include "so_long.h"
 
-int 	start(t_data *data);
-int     refresh(t_data *data);
-int	    quit(char *message, int status, t_data *data);
+int		start(t_data *data);
+int		refresh(t_data *data);
+int		quit(char *message, int status, t_data *data);
 t_data	*parse(const char *filename, t_data *data);
 t_data	*setup(t_data *data);
 t_data	*so_long(int key, t_data *data);

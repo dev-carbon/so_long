@@ -28,7 +28,7 @@ static int	check_set(char c, char const *set)
 	return (0);
 }
 
-char		*ft_strrtrim(char const *s1, char const *set)
+char	*ft_strrtrim(char const *s1, char const *set)
 {
 	char	*str;
 

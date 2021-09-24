@@ -16,5 +16,9 @@
 # include "so_long.h"
 
 void	render_world2d(t_window win, t_map map, t_data data);
+void	render_player(t_window win, t_player player, t_data data);
+void	render_collectibles(t_window win, t_collectible *c, t_data data);
+void	render_exits(t_window win, t_exit *exits, t_data data);
+void	render_map(t_window win, t_map map, t_data data);
 
 #endif

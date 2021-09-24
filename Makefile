@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-SANITIZE = -g3 -fsanitize=address -fno-omit-frame-pointer
+# SANITIZE = -g3 -fsanitize=address -fno-omit-frame-pointer
 
 NAME = so_long
 

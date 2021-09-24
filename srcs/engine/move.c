@@ -25,10 +25,10 @@ static t_coor	normalize_position(t_coor pos, t_map map)
 	return (pos);
 }
 
-void    move(int key, t_coor pos, t_data *data)
+void	move(int key, t_coor pos, t_data *data)
 {
-    pos = normalize_position(pos, *data->map);
-	if (data->map->matrix[pos.y][pos.x] != MAP_WALL	&& is_valid_key(key))
+	pos = normalize_position(pos, *data->map);
+	if (data->map->matrix[pos.y][pos.x] != MAP_WALL && is_valid_key(key))
 	{
 		ft_putstr("movement count: ");
 		ft_putnbr(++data->player->moves);

@@ -18,7 +18,8 @@ char	*ft_strndup(const char *s1, size_t n)
 	size_t	i;
 
 	i = -1;
-	if (!(str = ft_strnew(n)))
+	str = ft_strnew(n);
+	if (!str)
 		return (NULL);
 	while (++i < n && s1[i] != '\0')
 		str[i] = s1[i];

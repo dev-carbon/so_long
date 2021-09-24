@@ -42,6 +42,7 @@ static void	write_message(char *message, int status)
 
 int	quit(char *message, int status, t_data *data)
 {
+	write_score_fd(data->player->items, data->player->moves, STDOUT_FILENO);
 	destroy_data(data);
 	write_message(message, status);
 	exit(status);
