@@ -88,23 +88,25 @@ OBJ = $(SRCS:.c=.o)
 
 OBJ_BONUS = $(BONUS:.c=.o)
 
-all: bonus
+all: $(NAME)
 
 bonus: $(OBJ) $(OBJ_BONUS)
+	@echo "Compiling $(NAME) ..."
 	@ar rc $(NAME) $^
 	@ranlib $(NAME)
-	@echo $(NAME) created.
+	@echo $(NAME) [Ok].
 
 $(NAME):
-	$(CC) $(CFLAGS) -c $(SRCS)
-	ar rc $(NAME) $(OBJ)
+	@echo "Compiling $(NAME) ..."
+	@$(CC) $(CFLAGS) -c $(SRCS)
+	@ar rc $(NAME) $(OBJ)
 	@echo $(NAME) created.
 
 clean:
-	/bin/rm -rf $(OBJ) $(OBJ_BONUS)
+	@/bin/rm -rf $(OBJ) $(OBJ_BONUS)
 
 fclean: clean
-	/bin/rm -f $(NAME)
+	@/bin/rm -f $(NAME)
 
 
 re: fclean all

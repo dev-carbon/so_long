@@ -17,17 +17,11 @@ static void	destroy_data(t_data *data)
 	if (data != NULL)
 	{
 		destroy_rows(data);
-		destroy_map(data);
 		destroy_config(data);
+		destroy_assets(data);
 		destroy_player(data);
-		int	i = 0;
-		while (i < 5)
-		{
-			if (data->assets[i].img.ptr)
-				mlx_destroy_image(data->window->mlx_ptr, data->assets[i].img.ptr);
-			i++;
-		}
 		destroy_window(data);
+		destroy_map(data);
 		free(data);
 		data = NULL;
 	}

@@ -51,17 +51,19 @@ all: $(NAME)
 $(NAME): $(OBJS)
 	@$(MAKE) -C mlx
 	@$(MAKE) -C libft
-	$(CC) $(CFLAGS) -g3 $(SANITIZE) -o $(NAME) $(OBJS) $(INC) $(LIBS_DIR) $(LIBS)
+	@echo "Compiling $(NAME) ..."
+	@$(CC) $(CFLAGS) -g3 $(SANITIZE) -o $(NAME) $(OBJS) $(INC) $(LIBS_DIR) $(LIBS)
+	@echo $(NAME) is ready.
 
 clean:
 	@cd mlx && $(MAKE) clean
 	@cd libft && $(MAKE) clean
-	/bin/rm -f *.o
+	@/bin/rm -f *.o
 
 fclean: clean
-	@cd mlx && $(MAKE) fclean
+	@cd mlx && $(MAKE) clean
 	@cd libft && $(MAKE) fclean
-	/bin/rm -fr $(NAME) $(BONUS)
+	@/bin/rm -fr $(NAME)
 
 re: fclean all
 

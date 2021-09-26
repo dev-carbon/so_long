@@ -1,31 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   destroy_rows.c                                     :+:      :+:    :+:   */
+/*   destroy_assets.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: humanfou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/21 16:19:27 by humanfou          #+#    #+#             */
-/*   Updated: 2021/09/21 16:19:39 by humanfou         ###   ########.fr       */
+/*   Created: 2021/09/26 03:09:52 by humanfou          #+#    #+#             */
+/*   Updated: 2021/09/26 03:09:55 by humanfou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
 
-void	destroy_rows(t_data *data)
+void	destroy_assets(t_data *data)
 {
-	t_rows	*current;
+	int	i;
 
-	if (data->rows != NULL)
-	{
-		while (data->rows != NULL)
-		{
-			current = data->rows;
-			data->rows = data->rows->next;
-			free(current->line);
-			free(current);
-		}
-		free(data->rows);
-		data->rows = NULL;
-	}
+	i = -1;
+	while (++i < 5)
+		if (data->assets[i].img.ptr)
+			mlx_destroy_image(data->window->mlx_ptr, data->assets[i].img.ptr);
 }

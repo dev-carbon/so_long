@@ -16,8 +16,9 @@
 # include "so_long.h"
 
 void		write_score_fd(int items, int moves, int fd);
+void		destroy_assets(t_data *data);
 void		destroy_window(t_data *data);
-t_data		*destroy_rows(t_data *data);
+void		destroy_rows(t_data *data);
 void		destroy_map(t_data *data);
 void		destroy_config(t_data *data);
 void		destroy_player(t_data *data);

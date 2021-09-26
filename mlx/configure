@@ -90,6 +90,6 @@ if [ -n "$1" -a "$1" = "clean" ] ; then
     exit
 fi
 
-echo "Now make it."
+echo "Compiling minilibx."
 make -f Makefile.gen all
-(cd test ; make -f Makefile.gen all )
+# (cd test ; make -f Makefile.gen all )
