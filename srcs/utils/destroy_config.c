@@ -12,49 +12,49 @@
 
 #include "utils.h"
 
-static void	destroy_collectibles(t_collectible *collectible)
+static void	destroy_collectibles(t_data *data)
 {
 	t_collectible	*current;
 
-	if (collectible != NULL)
+	if (data->config->collectibles != NULL)
 	{
-		while (collectible != NULL)
+		while (data->config->collectibles != NULL)
 		{
-			current = collectible;
-			collectible = collectible->next;
+			current = data->config->collectibles;
+			data->config->collectibles = data->config->collectibles->next;
 			free(current);
 			current = NULL;
 		}
-		free(collectible);
-		collectible = NULL;
+		free(data->config->collectibles);
+		data->config->collectibles = NULL;
 	}
 }
 
-static void	destroy_exits(t_exit *exit)
+static void	destroy_exits(t_data *data)
 {
 	t_exit	*current;
 
-	if (exit != NULL)
+	if (data->config->exits != NULL)
 	{
-		while (exit != NULL)
+		while (data->config->exits != NULL)
 		{
-			current = exit;
-			exit = exit->next;
+			current = data->config->exits;
+			data->config->exits = data->config->exits->next;
 			free(current);
 			current = NULL;
 		}
-		free(exit);
-		exit = NULL;
+		free(data->config->exits);
+		data->config->exits = NULL;
 	}
 }
 
-void	destroy_config(t_config *config)
+void	destroy_config(t_data *data)
 {
-	if (config != NULL)
+	if (data->config != NULL)
 	{
-		destroy_collectibles(config->collectibles);
-		destroy_exits(config->exits);
-		free(config);
-		config = NULL;
+		destroy_collectibles(data);
+		destroy_exits(data);
+		free(data->config);
+		data->config = NULL;
 	}
 }

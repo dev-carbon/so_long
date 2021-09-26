@@ -23,7 +23,7 @@ int	keypress(int key, t_data *data)
 	else if (key == KEY_Q)
 		data->player->walk_dir.x = -1;
 	else if (key == KEY_ESC)
-		quit("bye!\n", EXIT_SUCCESS, data);
+		quit("", EXIT_SUCCESS, data);
 	so_long(key, data);
 	refresh(data);
 	return (0);

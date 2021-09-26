@@ -16,6 +16,6 @@ t_data	*init_window(t_data *data)
 {
 	data->window = (t_window *)malloc(sizeof(t_window));
 	if (data->window == NULL)
-		quit("Unable to init window\n", EXIT_FAILURE, data);
+		quit("malloc() *window\n", EXIT_FAILURE, data);
 	return (data);
 }

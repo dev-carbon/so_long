@@ -15,5 +15,5 @@
 void	escape(t_coor pos, t_data *data)
 {
 	data->map->matrix[pos.y][pos.x] = MAP_SPACE;
-	quit("player exited map\n", EXIT_SUCCESS, data);
+	quit("", EXIT_SUCCESS, data);
 }

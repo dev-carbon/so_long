@@ -12,11 +12,11 @@
 
 #include "utils.h"
 
-void	destroy_player(t_player *player)
+void	destroy_player(t_data *data)
 {
-	if (player != NULL)
+	if (data->player != NULL)
 	{
-		free(player);
-		player = NULL;
+		free(data->player);
+		data->player = NULL;
 	}
 }

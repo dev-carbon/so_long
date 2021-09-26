@@ -1,25 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_player.c                                      :+:      :+:    :+:   */
+/*   close_window.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: humanfou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/20 14:57:50 by humanfou          #+#    #+#             */
-/*   Updated: 2021/09/20 14:57:52 by humanfou         ###   ########.fr       */
+/*   Created: 2021/09/26 01:53:00 by humanfou          #+#    #+#             */
+/*   Updated: 2021/09/26 01:53:07 by humanfou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "init.h"
+#include "utils.h"
 
-t_data	*init_player(t_data *data)
+int	close_window(t_data *data)
 {
-	data->player = (t_player *)malloc(sizeof(t_player));
-	if (data->player == NULL)
-		quit("malloc() *player\n", EXIT_FAILURE, data);
-	data->player->walk_dir.x = 0;
-	data->player->walk_dir.y = 0;
-	data->player->moves = 0;
-	data->player->items = 0;
-	return (data);
+	if (data != NULL)
+	{
+		destroy_rows(data);
+		destroy_config(data);
+		destroy_map(data);
+		destroy_player(data);
+		int	i = 0;
+		while (i < 5)
+		{
+			if (data->assets[i].img.ptr)
+				mlx_destroy_image(data->window->mlx_ptr, data->assets[i].img.ptr);
+			i++;
+		}
+		destroy_window(data);
+		free(data);
+		data = NULL;
+	}
+	exit(EXIT_SUCCESS);
 }

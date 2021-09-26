@@ -12,16 +12,16 @@
 
 #include "utils.h"
 
-void	destroy_map(t_map *map)
+void	destroy_map(t_data *data)
 {
 	int	y;
 
-	if (map != NULL)
+	if (data->map != NULL)
 	{
 		y = -1;
-		while (++y < map->size.height)
-			free(*(map->matrix + y));
-		free(map);
-		map = NULL;
+		while (++y < data->map->size.height)
+			free(data->map->matrix[y]);
+		free(data->map);
+		data->map = NULL;
 	}
 }

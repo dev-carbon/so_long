@@ -16,6 +16,7 @@ int	main(const int argc, const char *argv[])
 {
 	t_data	*data;
 
+	data = NULL;
 	if (is_valid_args(argc, argv))
 	{
 		data = init_data(data);

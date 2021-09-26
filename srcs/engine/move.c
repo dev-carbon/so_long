@@ -30,7 +30,7 @@ void	move(int key, t_coor pos, t_data *data)
 	pos = normalize_position(pos, *data->map);
 	if (data->map->matrix[pos.y][pos.x] != MAP_WALL && is_valid_key(key))
 	{
-		ft_putstr("movement count: ");
+		// ft_putstr("movement count: ");
 		ft_putnbr(++data->player->moves);
 		ft_putchar('\n');
 		data->player->pos = pos;

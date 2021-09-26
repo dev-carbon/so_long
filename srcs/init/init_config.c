@@ -16,7 +16,7 @@ t_data	*init_config(t_data *data)
 {
 	data->config = (t_config *)malloc(sizeof(t_config));
 	if (data->config == NULL)
-		quit("Unable to init config\n", EXIT_FAILURE, data);
+		quit("malloc() *config\n", EXIT_FAILURE, data);
 	data->config->num_collectibles = 0;
 	data->config->num_exits = 0;
 	data->config->num_players = 0;

@@ -6,11 +6,11 @@
 #    By: humanfou <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/03 18:55:56 by humanfou          #+#    #+#              #
-#    Updated: 2021/09/03 18:55:57 by humanfou         ###   ########.fr        #
+#    Updated: 2021/09/25 23:30:31 by humanfou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SANITIZE = -g3 -fsanitize=address -fno-omit-frame-pointer
+SANITIZE = -fsanitize=address -fno-omit-frame-pointer
 
 NAME = so_long
 
@@ -51,14 +51,15 @@ all: $(NAME)
 $(NAME): $(OBJS)
 	@$(MAKE) -C mlx
 	@$(MAKE) -C libft
-	$(CC) $(CFLAGS)  $(SANITIZE) -o $(NAME) $(OBJS) $(INC) $(LIBS_DIR) $(LIBS)
+	$(CC) $(CFLAGS) -g3 $(SANITIZE) -o $(NAME) $(OBJS) $(INC) $(LIBS_DIR) $(LIBS)
 
 clean:
-	@cd libft && $(MAKE) clean
 	@cd mlx && $(MAKE) clean
+	@cd libft && $(MAKE) clean
 	/bin/rm -f *.o
 
 fclean: clean
+	@cd mlx && $(MAKE) fclean
 	@cd libft && $(MAKE) fclean
 	/bin/rm -fr $(NAME) $(BONUS)
 

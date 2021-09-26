@@ -16,6 +16,6 @@ t_data	*init_map(t_data *data)
 {
 	data->map = (t_map *)malloc(sizeof(t_map));
 	if (data->map == NULL)
-		quit("Unable to init map\n", EXIT_FAILURE, data);
+		quit("malloc() *map\n", EXIT_FAILURE, data);
 	return (data);
 }

@@ -16,11 +16,18 @@ static void	destroy_data(t_data *data)
 {
 	if (data != NULL)
 	{
-		destroy_rows(data->rows);
-		destroy_map(data->map);
-		destroy_window(data->window);
-		destroy_config(data->config);
-		destroy_player(data->player);
+		destroy_rows(data);
+		destroy_map(data);
+		destroy_config(data);
+		destroy_player(data);
+		int	i = 0;
+		while (i < 5)
+		{
+			if (data->assets[i].img.ptr)
+				mlx_destroy_image(data->window->mlx_ptr, data->assets[i].img.ptr);
+			i++;
+		}
+		destroy_window(data);
 		free(data);
 		data = NULL;
 	}
@@ -34,15 +41,11 @@ static void	write_message(char *message, int status)
 		write(STDERR_FILENO, message, ft_strlen(message));
 	}
 	if (status == EXIT_SUCCESS)
-	{
-		write(STDOUT_FILENO, "Success\n", 8);
 		write(STDOUT_FILENO, message, ft_strlen(message));
-	}
 }
 
 int	quit(char *message, int status, t_data *data)
 {
-	write_score_fd(data->player->items, data->player->moves, STDOUT_FILENO);
 	destroy_data(data);
 	write_message(message, status);
 	exit(status);

@@ -16,6 +16,8 @@ int	start(t_data *data)
 {
 	data->window->img.ptr = mlx_new_image(data->window->mlx_ptr,
 			data->window->size.width, data->window->size.height);
+	if (!data->window->img.ptr)
+		quit("mlx_new_image() img.ptr\n", EXIT_FAILURE, data);
 	data->window->img.data = (int *)mlx_get_data_addr(data->window->img.ptr,
 			&data->window->img.bpp, &data->window->img.line_length,
 			&data->window->img.endian);
@@ -24,7 +26,7 @@ int	start(t_data *data)
 		data->window->mlx_win, data->window->img.ptr, 0, 0);
 	mlx_hook(data->window->mlx_win, 2, 1L << 0, &keypress, data);
 	mlx_hook(data->window->mlx_win, 3, 1L << 1, &keyrelease, data);
-	mlx_hook(data->window->mlx_win, 33, 1L << 17, &quit, data);
+	mlx_hook(data->window->mlx_win, 33, 1L << 17, &close_window, data);
 	mlx_loop(data->window->mlx_ptr);
 	return (0);
 }

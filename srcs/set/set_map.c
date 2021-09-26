@@ -64,14 +64,14 @@ t_data	*set_map(t_data *data)
 	set_map_size(data);
 	data->map->matrix = (int **)malloc(sizeof(int *) * data->map->size.height);
 	if (data->map->matrix == NULL)
-		quit("Unable to allocate sufficient memory for map\n", 1, data);
+		quit("malloc() top map pointer\n", 1, data);
 	y = -1;
 	while (++y < data->map->size.height)
 	{
 		*(data->map->matrix + y) = (int *)malloc(sizeof(int)
 				* data->map->size.width);
 		if (*(data->map->matrix + y) == NULL)
-			quit("Unable to allocate enougth memory for map\n", 1, data);
+			quit("malloc() map line\n", 1, data);
 	}
 	fill_matrix(data);
 	return (data);

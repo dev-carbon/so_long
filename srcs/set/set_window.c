@@ -17,11 +17,15 @@ t_data	*set_window(t_data *data)
 	if (data->window == NULL)
 		init_window(data);
 	data->window->mlx_ptr = mlx_init();
+	if (!data->window->mlx_ptr)
+		quit("mlx_init() mlx_ptr\n", EXIT_FAILURE, data);
 	data->window->size.width = data->map->size.width
 		* data->config->tile_size.width;
 	data->window->size.height = data->map->size.height
 		* data->config->tile_size.height;
 	data->window->mlx_win = mlx_new_window(data->window->mlx_ptr,
 			data->window->size.width, data->window->size.height, APP_NAME);
+	if (!data->window->mlx_win)
+		quit("mlx_new_window() mlx_win\n", EXIT_FAILURE, data);
 	return (data);
 }

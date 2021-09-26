@@ -16,7 +16,7 @@ t_data	*init_data(t_data *data)
 {
 	data = (t_data *)malloc(sizeof(t_data));
 	if (data == NULL)
-		quit("Unable to init data\n", 1, NULL);
+		quit("malloc() *data\n", EXIT_FAILURE, NULL);
 	data->map = NULL;
 	data->config = NULL;
 	data->window = NULL;

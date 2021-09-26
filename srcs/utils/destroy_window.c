@@ -12,14 +12,18 @@
 
 #include "utils.h"
 
-void	destroy_window(t_window *window)
+void	destroy_window(t_data *data)
 {
-	if (window != NULL)
+	if (data->window != NULL)
 	{
-		mlx_destroy_image(window->mlx_ptr, window->img.ptr);
-		mlx_destroy_window(window->mlx_ptr, window->mlx_win);
-		free(window->mlx_ptr);
-		free(window);
-		window = NULL;
+		if (data->window->img.ptr)
+			mlx_destroy_image(data->window->mlx_ptr, data->window->img.ptr);
+		if (data->window->mlx_win)
+			mlx_destroy_window(data->window->mlx_ptr, data->window->mlx_win);
+		if (data->window->mlx_ptr)
+			mlx_destroy_display(data->window->mlx_ptr);
+		if (data->window)
+			free(data->window);
+		data->window = NULL;
 	}
 }

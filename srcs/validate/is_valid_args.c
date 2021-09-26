@@ -16,7 +16,7 @@ int	is_valid_args(const int ac, const char **av)
 {
 	if (ac != 2)
 		quit("Invalid number of arguments.\n", EXIT_FAILURE, NULL);
-	else if (!is_valid_file_extension(av[1], ".ber"))
+	if (!is_valid_file_extension(av[1], ".ber"))
 		quit("Invalid file extension.\n", EXIT_FAILURE, NULL);
 	return (1);
 }

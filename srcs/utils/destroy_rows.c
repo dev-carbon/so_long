@@ -12,21 +12,21 @@
 
 #include "utils.h"
 
-void	destroy_rows(t_rows *rows)
+t_data	*destroy_rows(t_data *data)
 {
 	t_rows	*current;
 
-	if (rows != NULL)
+	if (data->rows != NULL)
 	{
-		while (rows != NULL)
+		while (data->rows != NULL)
 		{
-			current = rows;
-			rows = rows->next;
+			current = data->rows;
+			data->rows = data->rows->next;
 			free(current->line);
 			free(current);
-			current = NULL;
 		}
-		free(rows);
-		rows = NULL;
+		free(data->rows);
+		data->rows = NULL;
 	}
+	return (data);
 }
