@@ -98,7 +98,7 @@ bonus: $(OBJ) $(OBJ_BONUS)
 
 $(NAME):
 	@echo "Compiling $(NAME) ..."
-	@$(CC) $(CFLAGS) -c $(SRCS)
+	@$(CC) -g $(CFLAGS) -c $(SRCS)
 	@ar rc $(NAME) $(OBJ)
 	@echo $(NAME) created.
 

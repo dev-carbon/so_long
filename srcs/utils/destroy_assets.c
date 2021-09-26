@@ -16,8 +16,12 @@ void	destroy_assets(t_data *data)
 {
 	int	i;
 
-	i = -1;
-	while (++i < 5)
-		if (data->assets[i].img.ptr)
-			mlx_destroy_image(data->window->mlx_ptr, data->assets[i].img.ptr);
+	if (data->window != NULL)
+	{
+		i = -1;
+		while (++i < NUM_ASSETS)
+			if (data->assets[i].img.ptr)
+				mlx_destroy_image(data->window->mlx_ptr,
+					data->assets[i].img.ptr);
+	}
 }

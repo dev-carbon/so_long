@@ -14,13 +14,9 @@
 
 void	destroy_map(t_data *data)
 {
-	int	y;
-
 	if (data->map != NULL)
 	{
-		y = -1;
-		while (++y < data->map->size.height)
-			free(data->map->matrix[y]);
+		destroy_matrix(data->map->matrix, data->map->size);
 		free(data->map);
 		data->map = NULL;
 	}

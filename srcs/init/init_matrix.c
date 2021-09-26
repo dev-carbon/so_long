@@ -1,22 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_map.c                                         :+:      :+:    :+:   */
+/*   init_matrix.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: humanfou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/21 16:41:23 by humanfou          #+#    #+#             */
-/*   Updated: 2021/09/21 16:41:24 by humanfou         ###   ########.fr       */
+/*   Created: 2021/09/26 04:47:23 by humanfou          #+#    #+#             */
+/*   Updated: 2021/09/26 04:47:26 by humanfou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "init.h"
 
-t_data	*init_map(t_data *data)
+t_data	*init_matrix(t_data *data)
 {
-	data->map = (t_map *)malloc(sizeof(t_map));
-	if (data->map == NULL)
-		quit("malloc() *map\n", EXIT_FAILURE, data);
-	data->map->matrix = 0;
+	int	y;
+
+	data->map->matrix = (int **)malloc(sizeof(int *) * data->map->size.height);
+	if (data->map->matrix == NULL)
+		quit("malloc() top matrix pointer\n", 1, data);
+	y = -1;
+	while (++y < data->map->size.height)
+	{
+		*(data->map->matrix + y) = (int *)malloc(sizeof(int)
+				* data->map->size.width);
+		if (*(data->map->matrix + y) == NULL)
+			quit("malloc() matrix line\n", 1, data);
+	}
 	return (data);
 }

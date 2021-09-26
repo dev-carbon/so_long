@@ -22,8 +22,9 @@ void	destroy_window(t_data *data)
 			mlx_destroy_window(data->window->mlx_ptr, data->window->mlx_win);
 		if (data->window->mlx_ptr)
 			mlx_destroy_display(data->window->mlx_ptr);
-		if (data->window)
-			free(data->window);
+		free(data->window->mlx_ptr);
+		data->window->mlx_ptr = NULL;
+		free(data->window);
 		data->window = NULL;
 	}
 }

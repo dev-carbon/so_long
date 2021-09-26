@@ -22,6 +22,7 @@ void		destroy_rows(t_data *data);
 void		destroy_map(t_data *data);
 void		destroy_config(t_data *data);
 void		destroy_player(t_data *data);
+void		destroy_matrix(int **matrix, t_size size);
 int			is_wall(t_coor pos, t_map map, t_size tile_size);
 int			is_space(t_coor pos, t_map map, t_size tile_size);
 int			is_collectible(t_coor pos, t_map map, t_size tile_size);

@@ -55,24 +55,50 @@ static t_data	*fill_matrix(t_data *data)
 	return (data);
 }
 
+static int	**cpy_matrix(t_data *data)
+{
+	int	x;
+	int	y;
+	int	**cpy;
+
+	cpy = (int **)malloc(sizeof(int *) * data->map->size.height);
+	if (data->map->matrix == NULL)
+		quit("malloc() top matrix copy pointer\n", 1, data);
+	y = -1;
+	while (++y < data->map->size.height)
+	{
+		*(cpy + y) = (int *)malloc(sizeof(int) * data->map->size.width);
+		if (*(cpy + y) == NULL)
+			quit("malloc() matrix line\n", EXIT_FAILURE, data);
+	}
+	y = -1;
+	while (++y < data->map->size.height)
+	{
+		x = -1;
+		while (++x < data->map->size.width)
+			cpy[y][x] = data->map->matrix[y][x];
+	}
+	return (cpy);
+}
+
 t_data	*set_map(t_data *data)
 {
-	int		y;
+	int		**cpy;
 
 	if (data->map == NULL)
 		init_map(data);
 	set_map_size(data);
-	data->map->matrix = (int **)malloc(sizeof(int *) * data->map->size.height);
-	if (data->map->matrix == NULL)
-		quit("malloc() top map pointer\n", 1, data);
-	y = -1;
-	while (++y < data->map->size.height)
-	{
-		*(data->map->matrix + y) = (int *)malloc(sizeof(int)
-				* data->map->size.width);
-		if (*(data->map->matrix + y) == NULL)
-			quit("malloc() map line\n", 1, data);
-	}
+	if (data->map->matrix == 0)
+		init_matrix(data);
 	fill_matrix(data);
+	cpy = cpy_matrix(data);
+	if (!is_valid_matrix(data->config->start_pos.x,
+			data->config->start_pos.y, cpy, data->map->size))
+	{
+		destroy_matrix(cpy, data->map->size);
+		quit("map is not bordered.\n", EXIT_FAILURE, data);
+	}
+	destroy_rows(data);
+	destroy_matrix(cpy, data->map->size);
 	return (data);
 }

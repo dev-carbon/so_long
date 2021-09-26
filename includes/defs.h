@@ -22,6 +22,8 @@
 # define MAP_EXIT 4
 # define MAP_WITNESS 5
 
+# define NUM_ASSETS 5
+
 # define ASSET_WALL 0
 # define ASSET_SPACE 1
 # define ASSET_COLLECTIBLE 2

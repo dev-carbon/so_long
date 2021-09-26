@@ -1,24 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   validate.h                                         :+:      :+:    :+:   */
+/*   init_assets.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: humanfou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/04 11:16:06 by humanfou          #+#    #+#             */
-/*   Updated: 2021/09/04 11:16:08 by humanfou         ###   ########.fr       */
+/*   Created: 2021/09/26 03:59:33 by humanfou          #+#    #+#             */
+/*   Updated: 2021/09/26 03:59:41 by humanfou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef VALIDATE_H
-# define VALIDATE_H
+#include "init.h"
 
-# include "so_long.h"
+t_data	*init_assets(t_data *data)
+{
+	int	i;
 
-int	is_valid_args(const int ac, const char **av);
-int	is_valid_file_extension(const char *filename, const char *ext);
-int	is_valid_matrix(int x, int y, int **grid, t_size size);
-int	is_valid_rows(t_data *data);
-int	is_valid_key(int key);
-
-#endif
+	i = -1;
+	while (++i < NUM_ASSETS)
+		data->assets[i].img.ptr = NULL;
+	return (data);
+}

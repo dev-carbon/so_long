@@ -48,7 +48,8 @@ static char	*get_line(char *line, char **hold)
 		if (!line)
 			return (NULL);
 		tmp = *hold;
-		*hold = ft_substr(tmp, get_line_len(tmp) + 1, ft_strlen(tmp));
+		*hold = ft_substr(tmp, get_line_len(tmp) + 1,
+				ft_strlen(tmp) - ft_strlen(line));
 		if (!(*hold))
 			return (NULL);
 		free(tmp);
