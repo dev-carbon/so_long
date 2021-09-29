@@ -6,7 +6,7 @@
 /*   By: humanfou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/18 04:16:01 by humanfou          #+#    #+#             */
-/*   Updated: 2021/09/18 04:16:03 by humanfou         ###   ########.fr       */
+/*   Updated: 2021/09/29 06:30:05 by humanfou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,5 +95,6 @@ t_data	*parse(const char *filename, t_data *data)
 	if (is_valid_rows(data))
 		get_map_elements(data);
 	check_errors(data);
+	close(fd);
 	return (data);
 }
