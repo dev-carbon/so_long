@@ -95,6 +95,6 @@ t_data	*parse(const char *filename, t_data *data)
 	if (is_valid_rows(data))
 		get_map_elements(data);
 	check_errors(data);
-	close(fd);
+	close(data->fd);
 	return (data);
 }
